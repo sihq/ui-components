@@ -7,19 +7,19 @@ import Button from './Button';
 import React from 'react';
 
 export default {
-  /* 👇 The title prop is optional.
-  * See https://storybook.js.org/docs/react/configure/overview#configure-story-loading
-  * to learn how to generate automatic titles
-  */
-  title: 'Button',
-  component: Button,
-  decorators: [
-    (Story) => (
-      <BrowserRouter>
-       <Story />
-      </BrowserRouter>
-    ),
-  ],
+    title: 'Button',
+    component: Button,
+    decorators: [
+        (Story) => (
+            <BrowserRouter>
+                <Story />
+            </BrowserRouter>
+        ),
+    ],
 } as ComponentMeta<typeof Button>;
 
-export const Primary: ComponentStory<typeof Button> = () => <Button primary>Button</Button>;
+export const Primary: ComponentStory<typeof Button> = () => <Button variant="primary">Button</Button>;
+
+export const Standard: ComponentStory<typeof Button> = () => <Button variant="standard">Button</Button>;
+
+export const Destructive: ComponentStory<typeof Button> = () => <Button variant="destructive">Button</Button>;
