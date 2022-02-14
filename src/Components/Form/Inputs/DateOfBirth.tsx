@@ -1,11 +1,9 @@
 import React, { useContext } from 'react';
 
-import Text from './Text';
-
-import CurrencyFormat from 'react-currency-format';
-
-import { ControllerContext } from '../../../Providers/Controller';
 import Conditional from '../../Conditional';
+import { ControllerContext } from '../../../Providers/Controller';
+import CurrencyFormat from 'react-currency-format';
+import Text from './Text';
 
 interface DateOfBirthProperties {
     id?: string;
@@ -17,7 +15,7 @@ interface DateOfBirthProperties {
 
 export default (props: DateOfBirthProperties): JSX.Element => {
     const { name } = props;
-    const { value, setValue } = useContext(ControllerContext);
+    const { value } = useContext(ControllerContext);
 
     function calculateAge() {
         const dob = `${value(name)}`.split(' / ');
@@ -77,8 +75,8 @@ export default (props: DateOfBirthProperties): JSX.Element => {
     return (
         <>
             <CurrencyFormat
-                onValueChange={(values) => {
-                    const { value } = values;
+                onValueChange={() => {
+                    // const { value } = values;
                     // formattedValue = $2,223
                     // value ie, 2223
                     // console.log('onc', values);

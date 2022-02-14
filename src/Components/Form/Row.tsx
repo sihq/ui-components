@@ -1,7 +1,7 @@
-import React from 'react';
 import Conditional from '../Conditional';
+import React from 'react';
 
-interface RowProps {
+export interface RowProps {
     children: JSX.Element | JSX.Element[];
     title?: JSX.Element | string;
     description?: JSX.Element | string;

@@ -1,6 +1,6 @@
 import React from 'react';
 
-interface LayoutProps {
+export interface LayoutProps {
     children: JSX.Element | JSX.Element[];
 }
 

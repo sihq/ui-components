@@ -1,8 +1,8 @@
-import React, { ReactNode, useContext } from 'react';
-import { ControllerContext } from '../../Providers/Controller';
+import React, { useContext } from 'react';
 
-import { TypeBlocks } from '../Editor/Types';
 import Blocks from './Blocks';
+import { ControllerContext } from '../../Providers/Controller';
+import { TypeBlocks } from '../Editor/Types';
 
 // @ts-ignore
 interface EditorProperties extends React.InputHTMLAttributes<HTMLInputElement> {

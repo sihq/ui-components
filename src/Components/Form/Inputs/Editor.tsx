@@ -7,7 +7,6 @@ import { ControllerContext } from '../../../Providers/Controller';
 import EditorBlock from '../../Editor/EditorBlock';
 import InlineErrors from '../InlineErrors';
 import Label from '../Label';
-import { PlusCircleIcon } from '@heroicons/react/outline';
 import PrivacyBarrier from '../PrivacyBarrier';
 import { TypeBlocks } from '../../Editor/Types';
 
@@ -33,14 +32,11 @@ const VARIANTS: { [key: string]: string } = {
 };
 
 export default React.forwardRef<HTMLInputElement, EditorProperties>((props): JSX.Element => {
-    const { value, setValue, bind = (): object => ({}) } = useContext(ControllerContext);
+    const { value, setValue } = useContext(ControllerContext);
     const [selected, setSelected] = useState<string | null>(null);
     const {
-        id,
-        type,
         name,
         label,
-        defer = true,
 
         variant = 'basic',
     } = props;

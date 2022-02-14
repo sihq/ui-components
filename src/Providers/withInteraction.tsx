@@ -21,6 +21,7 @@ export default function withInteraction<T extends Options>(Component: ComponentT
             } else if (to) {
                 return (): void => navigate(to);
             }
+            return undefined;
         }
         const newProps = { ...options, action: action() } as T;
 

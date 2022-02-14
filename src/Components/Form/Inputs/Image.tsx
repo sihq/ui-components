@@ -17,7 +17,7 @@ interface ImageProperties extends TypeInput {
 
 export default React.forwardRef<HTMLInputElement, ImageProperties>((props, ref): JSX.Element => {
     const { setValue, value } = useContext(ControllerContext);
-    const { id, name, label, defer = true, disabled, placeholder } = props;
+    const { id, name, label, disabled, placeholder } = props;
     const { onChange, onKeyDown, onKeyUp, onFocus } = props;
 
     const [uploadProgress, setUploadProcess] = useState(0);
@@ -34,7 +34,7 @@ export default React.forwardRef<HTMLInputElement, ImageProperties>((props, ref):
             progress: (progress: number) => {
                 setUploadProcess(Math.round(progress * 100));
             },
-        }).then((response) => {
+        }).then((response: any) => {
             setValue(name, {
                 uuid: response.uuid,
                 key: response.key,

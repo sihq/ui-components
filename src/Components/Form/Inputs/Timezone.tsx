@@ -1,6 +1,4 @@
-import { StatusOnlineIcon } from '@heroicons/react/solid';
 import React from 'react';
-
 import Select from './Select';
 
 interface TimezoneProperties {

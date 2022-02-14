@@ -1,9 +1,11 @@
 import React, { ReactNode, useContext } from 'react';
-import { ControllerContext } from '../../../Providers/Controller';
+
 import Conditional from '../../Conditional';
+import { ControllerContext } from '../../../Providers/Controller';
 import InlineErrors from '../InlineErrors';
 import Label from '../Label';
 import PrivacyBarrier from '../PrivacyBarrier';
+
 // @ts-ignore
 interface ToggleProperties extends React.InputHTMLAttributes<HTMLInputElement> {
     id?: string;
@@ -17,20 +19,9 @@ interface ToggleProperties extends React.InputHTMLAttributes<HTMLInputElement> {
     variant?: string;
 }
 
-const VARIANTS: { [key: string]: string } = {
-    base: ' flex items-center justify-center relative border-2 outline-none focus-within:ring-2 rounded focus-within:shadow-inner focus-within:ring-opacity-20 transition-all ease-in-out duration-200 flex-1 px-3 p-2',
-    basic: ' bg-white border-gray-300 focus-within:border-blue-400 focus-within:ring-blue-400',
-    opaque: ' focus-within:bg-white bg-gray-200 border-gray-200 focus-within:border-blue-400 focus-within:ring-blue-400',
-};
-
 export default React.forwardRef<HTMLInputElement, ToggleProperties>((props, ref): JSX.Element => {
     const { bind = (): object => ({}) } = useContext(ControllerContext);
-    const { id, name, label, defer = true, append, prepend, disabled, variant = 'basic', placeholder } = props;
-
-    const className = Object.entries(VARIANTS)
-        .filter((i) => ['base', variant].includes(i[0]))
-        .reduce((a, b): any => [...a, b[1]], [])
-        .join('');
+    const { id, name, label, defer = true, append, prepend, disabled, placeholder } = props;
 
     return (
         <>

@@ -1,0 +1,14 @@
+import React, { ReactNode } from 'react';
+interface TextProperties extends React.InputHTMLAttributes<HTMLTextAreaElement> {
+    id?: string;
+    label?: string;
+    name: string;
+    type: string;
+    defer?: boolean;
+    prepend?: ReactNode;
+    append?: ReactNode;
+    size?: string;
+    variant?: string;
+}
+declare const _default: React.ForwardRefExoticComponent<TextProperties & React.RefAttributes<HTMLTextAreaElement>>;
+export default _default;
