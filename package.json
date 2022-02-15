@@ -23,7 +23,13 @@
     "lint-staged": {
         "**/*": "prettier --write --ignore-unknown"
     },
-    "devDependencies": {
+    "devDependencies": {},
+    "homepage": "http://sihq.github.io/ui-components",
+    "dependencies": {
+        "@types/googlemaps": "^3.43.3",
+        "@types/webpack": "^5.28.0",
+        "react-currency-format": "^1.1.0",
+        "react-google-autocomplete": "^2.6.1",
         "@babel/core": "^7.17.2",
         "@heroicons/react": "^1.0.5",
         "@storybook/addon-actions": "^6.4.13",
@@ -65,9 +71,7 @@
         "prop-types": "^15.8.1",
         "quagga-scanner": "^0.13.0",
         "react": "^17.0.2",
-        "react-currency-format": "^1.1.0",
         "react-dom": "^17.0.2",
-        "react-google-autocomplete": "^2.6.1",
         "react-hook-form": "^7.24.0",
         "react-icons": "^4.3.1",
         "react-router-dom": "^6.2.1",
@@ -77,11 +81,6 @@
         "uuid": "^8.3.2",
         "web-vitals": "^2.1.3",
         "webpack": "^5.65.0"
-    },
-    "homepage": "http://sihq.github.io/ui-components",
-    "dependencies": {
-        "@types/googlemaps": "^3.43.3",
-        "@types/webpack": "^5.28.0"
     },
     "resolutions": {
         "webpack": "^5"
