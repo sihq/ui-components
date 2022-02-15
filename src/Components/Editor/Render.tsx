@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 
 import Blocks from './Blocks';
-import { ControllerContext } from '../../Providers/Controller';
+import { ControllerContext } from '@sihq/reactive';
 import { TypeBlocks } from '../Editor/Types';
 
 // @ts-ignore

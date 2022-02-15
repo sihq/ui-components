@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 
-import { ControllerContext } from '../../Providers/Controller';
+import { ControllerContext } from '@sihq/reactive';
+
 interface InlineErrorProperties {
     name: string;
 }

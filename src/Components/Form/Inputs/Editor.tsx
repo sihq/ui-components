@@ -3,7 +3,7 @@ import React, { ReactNode, useContext, useState } from 'react';
 import AddBlock from '../../Editor/AddBlock';
 import BlockProperties from '../../Editor/BlockProperties';
 import Context from '../../Editor/Context';
-import { ControllerContext } from '../../../Providers/Controller';
+import { ControllerContext } from '@sihq/reactive';
 import EditorBlock from '../../Editor/EditorBlock';
 import InlineErrors from '../InlineErrors';
 import Label from '../Label';

@@ -2,7 +2,7 @@ import React, { ReactNode, useContext } from 'react';
 
 import { CheckIcon } from '@heroicons/react/solid';
 import Conditional from '../../Conditional';
-import { ControllerContext } from '../../../Providers/Controller';
+import { ControllerContext } from '@sihq/reactive';
 import InlineErrors from '../InlineErrors';
 import PrivacyBarrier from '../PrivacyBarrier';
 import { TypeIcon } from '../../../Types';

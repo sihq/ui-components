@@ -1,7 +1,7 @@
-import { SearchIcon, XIcon } from '@heroicons/react/solid';
 import React, { useContext } from 'react';
-import { ControllerContext } from '../../../Providers/Controller';
+import { SearchIcon, XIcon } from '@heroicons/react/solid';
 
+import { ControllerContext } from '@sihq/reactive';
 import Text from './Text';
 
 interface SearchProperties {

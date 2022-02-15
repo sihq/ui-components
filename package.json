@@ -28,6 +28,7 @@
     "dependencies": {
         "@babel/core": "^7.17.2",
         "@heroicons/react": "^1.0.5",
+        "@sihq/reactive": "^1.0.4",
         "@storybook/addon-actions": "^6.4.13",
         "@storybook/addon-essentials": "^6.4.13",
         "@storybook/addon-interactions": "^6.4.19",

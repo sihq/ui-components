@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 
 import Conditional from '../../Conditional';
-import { ControllerContext } from '../../../Providers/Controller';
+import { ControllerContext } from '@sihq/reactive';
 import CurrencyFormat from 'react-currency-format';
 import Text from './Text';
 

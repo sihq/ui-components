@@ -1,8 +1,10 @@
 import React, { ReactNode, useContext } from 'react';
-import { ControllerContext } from '../../../Providers/Controller';
+
+import { ControllerContext } from '@sihq/reactive';
 import InlineErrors from '../InlineErrors';
 import Label from '../Label';
 import PrivacyBarrier from '../PrivacyBarrier';
+
 // @ts-ignore
 interface TextProperties extends React.InputHTMLAttributes<HTMLTextAreaElement> {
     id?: string;

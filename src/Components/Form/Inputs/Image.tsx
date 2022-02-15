@@ -1,7 +1,7 @@
 import React, { SyntheticEvent, useContext, useState } from 'react';
 
 import Append from '../shared/Append';
-import { ControllerContext } from '../../../Providers/Controller';
+import { ControllerContext } from '@sihq/reactive';
 import InlineErrors from '../InlineErrors';
 import Label from '../Label';
 import Prepend from '../shared/Prepend';

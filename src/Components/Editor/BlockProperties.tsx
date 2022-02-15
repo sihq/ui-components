@@ -3,7 +3,7 @@ import React, { useContext, useState } from 'react';
 import Blocks from './Blocks';
 import { ChevronDownIcon } from '@heroicons/react/solid';
 import Context from './Context';
-import { ControllerContext } from '../../Providers/Controller';
+import { ControllerContext } from '@sihq/reactive';
 import Field from '../Form/Field';
 import { TypeBlocks } from './Types';
 import _ from 'lodash';

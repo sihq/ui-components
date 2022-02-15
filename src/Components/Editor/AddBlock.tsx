@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 
 import Blocks from './Blocks';
 import Conditional from '../Conditional';
-import { ControllerContext } from '../../Providers/Controller';
+import { ControllerContext } from '@sihq/reactive';
 import { PlusCircleIcon } from '@heroicons/react/outline';
 import { TypeBlocks } from './Types';
 import { v4 as uuidv4 } from 'uuid';

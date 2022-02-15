@@ -1,7 +1,7 @@
 import React, { ReactNode, useContext } from 'react';
 
 import Conditional from '../../Conditional';
-import { ControllerContext } from '../../../Providers/Controller';
+import { ControllerContext } from '@sihq/reactive';
 import InlineErrors from '../InlineErrors';
 import Label from '../Label';
 import PrivacyBarrier from '../PrivacyBarrier';
