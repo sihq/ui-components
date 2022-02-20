@@ -18,7 +18,7 @@ import Toggle from './Inputs/Toggle';
 import ToggleButton from './Inputs/ToggleButton';
 import Transfer from './Inputs/Transfer';
 
-interface FieldProperties {
+export interface FieldProperties {
     id?: string;
     label?: TypeLabel;
     name: string;
@@ -72,7 +72,7 @@ const Input = (props: FieldProperties): JSX.Element | null => {
     }
 };
 
-export default (props: FieldProperties): JSX.Element => {
+export const Field = (props: FieldProperties): JSX.Element => {
     const { id, name, label } = props;
 
     return (
@@ -81,3 +81,4 @@ export default (props: FieldProperties): JSX.Element => {
         </label>
     );
 };
+export default Field;

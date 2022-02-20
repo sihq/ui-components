@@ -1,5 +1,5 @@
 import { TypeIcon, TypeLabel, TypeOptions, TypeSize, TypeVariant } from '../../Types';
-interface FieldProperties {
+export interface FieldProperties {
     id?: string;
     label?: TypeLabel;
     name: string;
@@ -12,5 +12,5 @@ interface FieldProperties {
     icon?: TypeIcon;
     description?: string;
 }
-declare const _default: (props: FieldProperties) => JSX.Element;
-export default _default;
+export declare const Field: (props: FieldProperties) => JSX.Element;
+export default Field;

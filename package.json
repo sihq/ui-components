@@ -23,7 +23,10 @@
     "lint-staged": {
         "**/*": "prettier --write --ignore-unknown"
     },
-    "devDependencies": {},
+    "devDependencies": {
+        "@storybook/addon-storysource": "^6.4.19",
+        "storybook-addon-pseudo-states": "^1.0.0"
+    },
     "homepage": "http://sihq.github.io/ui-components",
     "dependencies": {
         "@babel/core": "^7.17.2",

@@ -7,6 +7,8 @@ module.exports = {
         '@storybook/addon-links',
         '@storybook/addon-essentials',
         'storybook-addon-designs',
+        '@storybook/addon-storysource',
+        'storybook-addon-pseudo-states',
         // Nuevo storybook addon para loader css
         {
             name: '@storybook/addon-postcss',

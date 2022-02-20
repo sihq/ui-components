@@ -3,7 +3,7 @@ import React from 'react';
 import { TypeVariant } from '../../Types';
 import _ from 'lodash';
 import withInteraction from '../../Providers/withInteraction';
-interface ButtonProperties extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+export interface ButtonProperties extends React.ButtonHTMLAttributes<HTMLButtonElement> {
     variant?: string;
     size?: string;
     icon?: JSX.Element;
@@ -34,7 +34,11 @@ const SIZES = {
     xl: ' py-3 px-8 text-sm',
 };
 
-export default withInteraction(
+function iconOnlyPadding(className: string, isIconOnly: boolean) {
+    return isIconOnly ? _.replace(className, /px-3|px-4|px-8/gi, 'px-4') : className;
+}
+
+export const Button = withInteraction(
     ({
         type = 'button',
         children,
@@ -44,11 +48,13 @@ export default withInteraction(
         disabled,
         icon,
     }: ButtonProperties): JSX.Element => {
-        const className = [
+        let className = [
             BASE,
             Object.values(_.pick(VARIANTS, [variant])).join(' '),
             Object.values(_.pick(SIZES, [size])).join(' '),
         ].join(' ');
+
+        className = iconOnlyPadding(className, icon !== undefined && children === undefined);
 
         return (
             <button {...{ type, className, disabled }} onClick={action}>
@@ -64,3 +70,4 @@ export default withInteraction(
         );
     },
 );
+export default Button;
