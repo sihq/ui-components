@@ -919,5 +919,5 @@ export declare const COUNTRY_CODES: {
         code: string;
     };
 };
-declare const _default: (props: PhoneProperties) => JSX.Element;
-export default _default;
+declare const Phone: (props: PhoneProperties) => JSX.Element;
+export default Phone;

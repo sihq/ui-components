@@ -1,4 +1,5 @@
 import React from 'react';
+
 import Select from './Select';
 import Text from './Text';
 
@@ -241,7 +242,7 @@ export const COUNTRY_CODES = {
     ZW: { name: 'ZIMBABWE', code: '263' },
 };
 
-export default (props: PhoneProperties): JSX.Element => {
+const Phone = (props: PhoneProperties): JSX.Element => {
     const input = React.createRef<HTMLInputElement>();
 
     const options = Object.entries(COUNTRY_CODES).map((country) => {
@@ -252,13 +253,15 @@ export default (props: PhoneProperties): JSX.Element => {
 
     const Prepend = (): JSX.Element => (
         <span className=" flex flex-shrink-0 w-24 mr-2 h-4  overflow-hidden">
-            <Select name="lala" type="select" options={options} variant="opaque" size="xs" />
+            <Select {...{ name: `${props.name}.country` }} type="select" options={options} variant="opaque" size="xs" />
         </span>
     );
 
     return (
         <>
-            <Text {...props} ref={input} prepend={<Prepend />} />
+            <Text {...{ ...props, name: `${props.name}.number` }} ref={input} prepend={<Prepend />} />
         </>
     );
 };
+
+export default Phone;
