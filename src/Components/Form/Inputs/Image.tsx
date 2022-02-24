@@ -58,12 +58,15 @@ export default React.forwardRef<HTMLInputElement, ImageProperties>((props, ref):
                                 <div
                                     className="aspect-video h-10 bg-gray-200 rounded mr-2 bg-center bg-cover"
                                     style={{
-                                        backgroundImage: `url(https://${
+                                        backgroundImage: `url(${
                                             // @ts-ignore
-                                            value(name)?.bucket
-                                        }.s3.ap-southeast-2.amazonaws.com/${
+                                            value(name)?.store
+                                        }${
                                             // @ts-ignore
-                                            value(name)?.key
+                                            value(name)?.status === 'staged' ? 'tmp/' : ''
+                                        }${
+                                            // @ts-ignore
+                                            value(name)?.id
                                         })`,
                                     }}
                                 ></div>
