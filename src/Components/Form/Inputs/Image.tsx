@@ -29,6 +29,8 @@ export default React.forwardRef<HTMLInputElement, ImageProperties>((props, ref):
         const type = e.target.files[0].type;
         // @ts-ignore
         Vapor.store(e.target.files[0], {
+            // @ts-ignore
+            signedStorageUrl: '/reactive/signed-transfer',
             visibility: 'public-read',
             // @ts-ignore
             progress: (progress: number) => {
