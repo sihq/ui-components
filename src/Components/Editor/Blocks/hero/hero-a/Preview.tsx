@@ -18,7 +18,8 @@ export default (data: Data): JSX.Element => (
                     alt="hero"
                     src={
                         data?.image
-                            ? `https://${data?.image?.bucket}.s3.ap-southeast-2.amazonaws.com/${data?.image?.key}`
+                            ? // @ts-ignore
+                              `${data?.image.store}${data?.image.status === 'staged' ? 'tmp/' : ''}${data?.image.id}`
                             : 'https://dummyimage.com/720x800'
                     }
                 />

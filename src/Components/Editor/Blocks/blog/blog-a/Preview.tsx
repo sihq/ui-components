@@ -10,7 +10,11 @@ export default (data: Data): JSX.Element => (
                             className="lg:h-48 md:h-36 w-full object-cover object-center"
                             src={
                                 data?.one?.image
-                                    ? `https://${data?.one?.image?.bucket}.s3.ap-southeast-2.amazonaws.com/${data?.one?.image?.key}`
+                                    ? // @ts-ignore
+                                      `${data?.one?.image.store}${data?.one?.image.status === 'staged' ? 'tmp/' : ''}${
+                                          // @ts-ignore
+                                          data?.one?.image.id
+                                      }`
                                     : 'https://dummyimage.com/720x400'
                             }
                             alt="blog"
@@ -35,7 +39,11 @@ export default (data: Data): JSX.Element => (
                             className="lg:h-48 md:h-36 w-full object-cover object-center"
                             src={
                                 data?.two?.image
-                                    ? `https://${data?.two?.image?.bucket}.s3.ap-southeast-2.amazonaws.com/${data?.two?.image?.key}`
+                                    ? // @ts-ignore
+                                      `${data?.two?.image.store}${data?.two?.image.status === 'staged' ? 'tmp/' : ''}${
+                                          // @ts-ignore
+                                          data?.two?.image.id
+                                      }`
                                     : 'https://dummyimage.com/720x400'
                             }
                             alt="blog"
@@ -60,7 +68,14 @@ export default (data: Data): JSX.Element => (
                             className="lg:h-48 md:h-36 w-full object-cover object-center"
                             src={
                                 data?.three?.image
-                                    ? `https://${data?.three?.image?.bucket}.s3.ap-southeast-2.amazonaws.com/${data?.three?.image?.key}`
+                                    ? // @ts-ignore
+                                      `${data?.three?.image.store}${
+                                          // @ts-ignore
+                                          data?.three?.image.status === 'staged' ? 'tmp/' : ''
+                                      }${
+                                          // @ts-ignore
+                                          data?.three?.image.id
+                                      }`
                                     : 'https://dummyimage.com/720x400'
                             }
                             alt="blog"
