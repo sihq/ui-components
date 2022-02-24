@@ -38,11 +38,9 @@ export default React.forwardRef<HTMLInputElement, ImageProperties>((props, ref):
             },
         }).then((response: any) => {
             setValue(name, {
-                uuid: response.uuid,
-                key: response.key,
-                bucket: response.bucket,
+                ...response.file,
                 name: fileName,
-                content_type: type,
+                mime: type,
             });
         });
     }
@@ -54,11 +52,11 @@ export default React.forwardRef<HTMLInputElement, ImageProperties>((props, ref):
                 <Prepend {...props} />
 
                 <div className="flex flex-col relative">
-                    <div className="flex">
+                    <div className="flex items-center">
                         <div>
                             {value(name) ? (
                                 <div
-                                    className="h-5 w-5 bg-gray-700 rounded mr-2 bg-center bg-cover"
+                                    className="aspect-video h-10 bg-gray-200 rounded mr-2 bg-center bg-cover"
                                     style={{
                                         backgroundImage: `url(https://${
                                             // @ts-ignore
@@ -78,7 +76,7 @@ export default React.forwardRef<HTMLInputElement, ImageProperties>((props, ref):
                             id={`${id ?? name ?? label}`}
                             {...{ name, disabled, placeholder, onChange, onKeyDown, onKeyUp, onFocus }}
                             {...(onChange ? {} : { onChange: upload })}
-                            className="outline-none bg-transparent flex-1 w-full"
+                            className="outline-none bg-transparent flex-1 w-full ml-2"
                         />
                     </div>
                     <div
