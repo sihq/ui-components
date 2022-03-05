@@ -1,8 +1,7 @@
 import { HomeIcon } from '@heroicons/react/solid';
 import React from 'react';
-import { usePlacesWidget } from 'react-google-autocomplete';
-
 import Text from './Text';
+import { usePlacesWidget } from 'react-google-autocomplete';
 
 interface AddressProperties {
     id?: string;
@@ -1005,9 +1004,9 @@ export default (props: AddressProperties): JSX.Element => {
         <span className="flex flex-shrink-0 items-center justify-center mr-2">
             <button
                 type="button"
-                className="flex focus:outline-none z-10 hover:bg-gray-100 p-1 rounded-full text-xs text-gray-400 hover:text-blue-500"
+                className="flex items-center focus:outline-none z-10 relative p-0.5 hover:bg-gray-100  rounded-full text-xs text-gray-400 hover:text-blue-500"
             >
-                <HomeIcon className="h-4 w-4" />
+                <HomeIcon className="h-3 w-3" />
             </button>
         </span>
     );

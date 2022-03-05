@@ -1,8 +1,7 @@
-import React from 'react';
-
-import Text from './Text';
+import { ClockIcon } from '@heroicons/react/solid';
 import CurrencyFormat from 'react-currency-format';
-import { ClockIcon } from '@heroicons/react/outline';
+import React from 'react';
+import Text from './Text';
 
 interface DurationProperties {
     id?: string;
@@ -14,7 +13,7 @@ interface DurationProperties {
 
 export default (props: DurationProperties): JSX.Element => {
     const Prepend = (): JSX.Element => (
-        <span className="flex flex-shrink-0 items-center justify-center mr-2 text-gray-500 text-xs">
+        <span className="flex flex-shrink-0 items-center p-0.5 justify-center mr-2 text-gray-400 text-xs">
             <ClockIcon className="h-3 w-3" />
         </span>
     );

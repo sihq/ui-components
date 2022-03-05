@@ -1,6 +1,5 @@
 import React from 'react';
-
-import Select from './Select';
+import Select from '../InputSelect/InputSelect';
 import Text from './Text';
 
 interface PhoneProperties {

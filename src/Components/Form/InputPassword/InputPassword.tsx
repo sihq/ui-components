@@ -1,9 +1,9 @@
 import { EyeIcon, EyeOffIcon } from '@heroicons/react/solid';
 import React, { useState } from 'react';
 
-import Text from './Text';
+import Text from '../Inputs/Text';
 
-interface PasswordProperties {
+export interface PasswordProperties {
     id?: string;
     label?: string;
     name: string;
@@ -23,11 +23,11 @@ export default (props: PasswordProperties): JSX.Element => {
                     set(!hidden);
                     input.current?.focus();
                 }}
-                className={`focus:outline-none z-10 right-2 p-1 rounded-full text-xs text-gray-400 hover:text-blue-500 ${
+                className={`focus:outline-none z-10 relative p-0.5 rounded-full text-xs text-gray-400 hover:text-blue-500 ${
                     hidden ? '' : 'bg-gray-200'
                 }`}
             >
-                {hidden ? <EyeIcon className="h-4 w-4" /> : <EyeOffIcon className="h-4 w-4" />}
+                {hidden ? <EyeIcon className="h-3 w-3" /> : <EyeOffIcon className="h-3 w-3" />}
             </button>
         </span>
     );

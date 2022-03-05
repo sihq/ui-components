@@ -1,7 +1,6 @@
-import React from 'react';
-
-import Text from './Text';
 import CurrencyFormat from 'react-currency-format';
+import React from 'react';
+import Text from './Text';
 
 interface CurrencyProperties {
     id?: string;

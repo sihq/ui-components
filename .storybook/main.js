@@ -9,6 +9,8 @@ module.exports = {
         'storybook-addon-designs',
         '@storybook/addon-storysource',
         'storybook-addon-pseudo-states',
+        '@washingtonpost/storybook-addon-web-vitals',
+        '@storybook/addon-a11y',
         // Nuevo storybook addon para loader css
         {
             name: '@storybook/addon-postcss',

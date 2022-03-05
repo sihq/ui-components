@@ -1,10 +1,6 @@
-import { TypeIcon, TypeLabel, TypeOptions, TypeSize, TypeVariant } from '../../../Types';
-interface Props {
-    label?: TypeLabel;
-    options?: TypeOptions;
-    variant?: TypeVariant;
-    size?: TypeSize;
-    icon?: TypeIcon;
+import { TypeInput } from '../../../Types';
+interface TransferProperties extends TypeInput {
+    label?: string;
 }
-declare const Transfer: ({ options, label }: Props) => JSX.Element | null;
+declare const Transfer: (props: TransferProperties) => JSX.Element | null;
 export default Transfer;
