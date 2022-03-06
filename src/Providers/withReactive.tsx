@@ -134,14 +134,15 @@ export function withReactive<P>(WrappedComponent: React.ComponentType<P>): any {
                         };
                         const merge = {
                             ...controller.state,
-                            status: isCaller ? data.event ?? 'onRequest' : 'onDispatch',
+                            scope: isCaller ? data.event : null,
+                            status: isCaller ? 'onRequest' : 'onDispatch',
                         };
                         controller.setState(merge);
                         return payload;
                     });
                     this.request(payload).then(() => {
                         this.states.map(({ controller }) => {
-                            const merge = { ...controller.state, status: 'idle' };
+                            const merge = { ...controller.state, scope: '', status: 'idle' };
                             controller.setState(merge);
                         });
                         resolve(true);

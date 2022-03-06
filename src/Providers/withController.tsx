@@ -60,7 +60,7 @@ export function withController<P>(
 
         dispatching(event: string) {
             const { scope, status } = this.state;
-            return scope === event && status === 'onDispatch';
+            return scope === event && status === 'onRequest';
         }
 
         render(): JSX.Element {
