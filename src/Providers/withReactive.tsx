@@ -55,6 +55,9 @@ export function withReactive<P>(WrappedComponent: React.ComponentType<P>): any {
             const handleHtmlResponse = (response: any): void => {
                 this.setState({ htmlResponse: response });
             };
+            const handleValidationResponse = (response: any): void => {
+                console.log(response);
+            };
 
             return new Promise((resolve, reject) => {
                 axios
@@ -79,7 +82,12 @@ export function withReactive<P>(WrappedComponent: React.ComponentType<P>): any {
                     })
                     .catch((error) => {
                         const response = error.response;
-                        handleHtmlResponse(response.data);
+                        if (error.response.status === 422) {
+                            handleValidationResponse(response.data.errors);
+                        } else {
+                            handleHtmlResponse(response.data);
+                        }
+
                         reject();
                     });
             });
@@ -170,6 +178,7 @@ export function withReactive<P>(WrappedComponent: React.ComponentType<P>): any {
                     {htmlResponse ? (
                         <div
                             className="fixed inset-0 bg-black bg-opacity-75"
+                            style={{ zIndex: 9999 }}
                             onClick={(): void => this.setState({ htmlResponse: null })}
                         >
                             <div className="shadow-2xl  rounded-lg rounded-b-none absolute inset-20 bottom-0 bg-gray-200 p-10">
