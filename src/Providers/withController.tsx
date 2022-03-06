@@ -38,6 +38,7 @@ export function withController<P>(
             };
             this.dispatch = this.dispatch.bind(this);
             this.update = this.update.bind(this);
+            this.dispatching = this.dispatching.bind(this);
         }
 
         componentWillMount(): void {
@@ -57,10 +58,23 @@ export function withController<P>(
             this.setState(merge, () => (triggerDispatch ? this.dispatch() : null));
         }
 
+        dispatching(event: string) {
+            const { scope, status } = this.state;
+            return scope === event && status === 'onDispatch';
+        }
+
         render(): JSX.Element {
             return (
                 <ReactiveControllerContext.Provider
-                    value={{ state: this.state.data, update: this.update, dispatch: this.dispatch }}
+                    value={{
+                        status: this.state.status,
+                        scope: this.state.scope,
+                        exceptions: this.state.exceptions,
+                        state: this.state.data,
+                        update: this.update,
+                        dispatch: this.dispatch,
+                        dispatching: this.dispatching,
+                    }}
                 >
                     <WrappedComponent {...this.props} />
                 </ReactiveControllerContext.Provider>
