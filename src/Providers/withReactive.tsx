@@ -51,6 +51,13 @@ export function withReactive<P>(WrappedComponent: React.ComponentType<P>): any {
             Event.unsubscribe(this.uuid, this.onEvent);
         }
 
+        setControllersStatusIdle() {
+            this.states.map(({ controller }) => {
+                const merge = { ...controller.state, status: 'idle' };
+                controller.setState(merge);
+            });
+        }
+
         request(payload: object): Promise<object> {
             const handleHtmlResponse = (response: any): void => {
                 this.setState({ htmlResponse: response });
@@ -72,7 +79,8 @@ export function withReactive<P>(WrappedComponent: React.ComponentType<P>): any {
                             ? response.data.payload
                             : JSON.parse(atob(response.data.payload));
                         payload.map((data: any, index: number) => {
-                            this.states[index].controller.setState(data.state);
+                            const merge = { ...this.states[index].controller.state, data: data.state };
+                            this.states[index].controller.setState(merge);
                         });
                         resolve(response);
                     })
@@ -106,7 +114,7 @@ export function withReactive<P>(WrappedComponent: React.ComponentType<P>): any {
                         const payload = {
                             action: this.states[index].mounted ? 'onRequest' : 'onMount',
                             controller: controller.controller,
-                            state: controller.state,
+                            state: controller.state.data,
                         };
                         this.states[index].mounted = true;
                         return payload;
@@ -118,16 +126,7 @@ export function withReactive<P>(WrappedComponent: React.ComponentType<P>): any {
             );
         }
 
-        onUnmount(): void {
-            Queue.enqueue(
-                new Promise((resolve) => {
-                    setTimeout(() => {
-                        alert('trigger onUnmount from child controller');
-                        resolve(true);
-                    }, 200);
-                }),
-            );
-        }
+        onUnmount(): void {}
 
         onDispatch(data: ReactiveDataEvent): void {
             Queue.enqueue(
@@ -138,7 +137,7 @@ export function withReactive<P>(WrappedComponent: React.ComponentType<P>): any {
                             action: isCaller ? 'onRequest' : 'onDispatch',
                             ...(isCaller ? { event: data.event } : {}),
                             controller: controller.controller,
-                            state: controller.state,
+                            state: controller.state.data,
                         };
                         return payload;
                     });

@@ -6,24 +6,36 @@ import { ReactiveControllerContext } from '../Contexts/ReactiveControllerContext
 
 export interface ReactiveController {
     controller: string;
-    state: object;
+    state: ReactiveControllerState;
     setState: (state: any) => undefined;
 }
 export interface ReactiveControllerProperties {
     controller: string;
 }
 
+export interface ReactiveControllerState {
+    data: object;
+    exceptions: object;
+    status: string;
+    scope: string | null;
+}
+
 export function withController<P>(
     Properties: ReactiveControllerProperties,
     WrappedComponent: React.ComponentType<P>,
 ): any {
-    const Controller = class Controller extends Component<P> {
+    const Controller = class Controller extends Component<P, ReactiveControllerState> {
         protected controller = '';
 
         constructor(props: P) {
             super(props);
             this.controller = Properties.controller;
-            this.state = {};
+            this.state = {
+                data: {},
+                exceptions: {},
+                status: 'idle',
+                scope: null,
+            };
             this.dispatch = this.dispatch.bind(this);
             this.update = this.update.bind(this);
         }
@@ -41,13 +53,14 @@ export function withController<P>(
         }
 
         update(state: object, triggerDispatch = false): void {
-            this.setState(state, () => (triggerDispatch ? this.dispatch() : null));
+            const merge = { ...this.state, data: state };
+            this.setState(merge, () => (triggerDispatch ? this.dispatch() : null));
         }
 
         render(): JSX.Element {
             return (
                 <ReactiveControllerContext.Provider
-                    value={{ state: this.state, update: this.update, dispatch: this.dispatch }}
+                    value={{ state: this.state.data, update: this.update, dispatch: this.dispatch }}
                 >
                     <WrappedComponent {...this.props} />
                 </ReactiveControllerContext.Provider>
