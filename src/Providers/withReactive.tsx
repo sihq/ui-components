@@ -51,13 +51,6 @@ export function withReactive<P>(WrappedComponent: React.ComponentType<P>): any {
             Event.unsubscribe(this.uuid, this.onEvent);
         }
 
-        setControllersStatusIdle() {
-            this.states.map(({ controller }) => {
-                const merge = { ...controller.state, status: 'idle' };
-                controller.setState(merge);
-            });
-        }
-
         request(payload: object): Promise<object> {
             const handleHtmlResponse = (response: any): void => {
                 this.setState({ htmlResponse: response });
@@ -139,9 +132,18 @@ export function withReactive<P>(WrappedComponent: React.ComponentType<P>): any {
                             controller: controller.controller,
                             state: controller.state.data,
                         };
+                        const merge = {
+                            ...controller.state,
+                            status: isCaller ? data.event ?? 'onRequest' : 'onDispatch',
+                        };
+                        controller.setState(merge);
                         return payload;
                     });
                     this.request(payload).then(() => {
+                        this.states.map(({ controller }) => {
+                            const merge = { ...controller.state, status: 'idle' };
+                            controller.setState(merge);
+                        });
                         resolve(true);
                     });
                 }),
