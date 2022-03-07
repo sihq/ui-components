@@ -120,7 +120,7 @@ export function withReactive<P>(WrappedComponent: React.ComponentType<P>): any {
                             controller: controller.controller,
                             state: controller.state.data,
                             // @ts-ignore
-                            props: controller.props.filter((prop: object, name: string) => name !== 'navigate'),
+                            props: controller.props ?? {},
                         };
                         this.states[index].mounted = true;
                         return payload;
@@ -145,7 +145,7 @@ export function withReactive<P>(WrappedComponent: React.ComponentType<P>): any {
                             controller: controller.controller,
                             state: controller.state.data,
                             // @ts-ignore
-                            props: controller.props.filter((prop: object, name: string) => name !== 'navigate'),
+                            props: controller.props ?? {},
                         };
                         const merge = {
                             ...controller.state,
