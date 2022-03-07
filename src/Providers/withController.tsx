@@ -70,7 +70,7 @@ export function withController<P>(
                 value: _.get(this.state.data, name) ?? '',
                 onChange: ({ target: { value, name, type } }: any): void => {
                     const initial = _.get(this.state.data, name);
-                    this.update(_.set(this.state.data, name, type === 'checkbox' ? !initial : value), defer);
+                    this.update(_.set(this.state.data, name, type === 'checkbox' ? !initial : value), !defer);
                 },
             };
         }
