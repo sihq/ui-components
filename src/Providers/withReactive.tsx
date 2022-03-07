@@ -119,6 +119,8 @@ export function withReactive<P>(WrappedComponent: React.ComponentType<P>): any {
                             action: this.states[index].mounted ? 'onRequest' : 'onMount',
                             controller: controller.controller,
                             state: controller.state.data,
+                            // @ts-ignore
+                            props: controller.props.filter((prop: object, name: string) => name !== 'navigate'),
                         };
                         this.states[index].mounted = true;
                         return payload;
@@ -142,6 +144,8 @@ export function withReactive<P>(WrappedComponent: React.ComponentType<P>): any {
                             ...(isCaller ? { event: data.event } : {}),
                             controller: controller.controller,
                             state: controller.state.data,
+                            // @ts-ignore
+                            props: controller.props.filter((prop: object, name: string) => name !== 'navigate'),
                         };
                         const merge = {
                             ...controller.state,

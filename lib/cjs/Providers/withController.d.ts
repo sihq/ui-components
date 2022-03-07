@@ -3,6 +3,7 @@ export interface ReactiveController {
     controller: string;
     state: ReactiveControllerState;
     setState: (state: any) => undefined;
+    props: any;
 }
 export interface ReactiveControllerProperties {
     controller: string;

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import { Event } from '../Services';
 import { ReactiveContext } from '../Contexts/ReactiveContext';
@@ -9,6 +10,7 @@ export interface ReactiveController {
     controller: string;
     state: ReactiveControllerState;
     setState: (state: any) => undefined;
+    props: any;
 }
 export interface ReactiveControllerProperties {
     controller: string;
@@ -100,5 +102,10 @@ export function withController<P>(
         }
     };
     Controller.contextType = ReactiveContext;
-    return Controller;
+
+    return (props: any) => {
+        const navigate = useNavigate();
+        const parameters = useParams();
+        return <Controller navigate={navigate} {...parameters} {...props} />;
+    };
 }
