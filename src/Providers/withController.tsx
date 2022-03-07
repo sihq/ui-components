@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { Event } from '../Services';
 import { ReactiveContext } from '../Contexts/ReactiveContext';
 import { ReactiveControllerContext } from '../Contexts/ReactiveControllerContext';
+import _ from 'lodash';
 
 export interface ReactiveController {
     controller: string;
@@ -18,6 +19,11 @@ export interface ReactiveControllerState {
     exceptions: object;
     status: string;
     scope: string | null;
+}
+
+export interface bindProps {
+    defer?: boolean;
+    name: string;
 }
 
 export function withController<P>(
@@ -39,6 +45,7 @@ export function withController<P>(
             this.dispatch = this.dispatch.bind(this);
             this.update = this.update.bind(this);
             this.dispatching = this.dispatching.bind(this);
+            this.bind = this.bind.bind(this);
         }
 
         componentWillMount(): void {
@@ -58,6 +65,16 @@ export function withController<P>(
             this.setState(merge, () => (triggerDispatch ? this.dispatch() : null));
         }
 
+        bind({ defer, name }: bindProps): object {
+            return {
+                value: _.get(this.state.data, name) ?? '',
+                onChange: ({ target: { value, name, type } }: any): void => {
+                    const initial = _.get(this.state.data, name);
+                    this.update(_.set(this.state.data, name, type === 'checkbox' ? !initial : value), defer);
+                },
+            };
+        }
+
         dispatching(event: string) {
             const { scope, status } = this.state;
             return scope === event && status === 'onRequest';
@@ -74,6 +91,7 @@ export function withController<P>(
                         update: this.update,
                         dispatch: this.dispatch,
                         dispatching: this.dispatching,
+                        bind: this.bind,
                     }}
                 >
                     <WrappedComponent {...this.props} />

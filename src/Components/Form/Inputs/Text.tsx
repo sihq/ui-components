@@ -1,11 +1,11 @@
 import React, { useContext } from 'react';
 
 import Append from '../shared/Append';
-import { ControllerContext } from '@sihq/reactive';
 import InlineErrors from '../InlineErrors';
 import Label from '../Label';
 import Prepend from '../shared/Prepend';
 import PrivacyBarrier from '../PrivacyBarrier';
+import { ReactiveControllerContext } from '../../../Contexts/ReactiveControllerContext';
 import { TypeInput } from '../../../Types';
 import Wrapper from '../shared/Wrapper';
 
@@ -16,7 +16,7 @@ interface TextProperties extends TypeInput {
 }
 
 export default React.forwardRef<HTMLInputElement, TextProperties>((props, ref): JSX.Element => {
-    const { bind = (): object => ({}) } = useContext(ControllerContext);
+    const { bind = (): object => ({}) } = useContext(ReactiveControllerContext);
     const { id, type, name, label, defer = true, disabled, placeholder } = props;
     const { onChange, onKeyDown, onKeyUp, onFocus } = props;
 

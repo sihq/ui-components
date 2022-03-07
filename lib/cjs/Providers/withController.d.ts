@@ -13,4 +13,8 @@ export interface ReactiveControllerState {
     status: string;
     scope: string | null;
 }
+export interface bindProps {
+    defer?: boolean;
+    name: string;
+}
 export declare function withController<P>(Properties: ReactiveControllerProperties, WrappedComponent: React.ComponentType<P>): any;
