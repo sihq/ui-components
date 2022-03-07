@@ -22,15 +22,20 @@ export interface ReactiveControllerRegistration {
     mounted: boolean;
 }
 
+export interface ReactiveProps {
+    debug?: boolean;
+}
+
 export function withReactive<P>(WrappedComponent: React.ComponentType<P>): any {
     return class Reactive extends Component<P, any> {
-        static debug = false;
+        protected debug = false;
         static delay = 100;
         protected uuid: string;
         public states: ReactiveControllerRegistration[] = [];
 
-        constructor(props: P) {
+        constructor(props: P & ReactiveProps) {
             super(props);
+            this.debug = props?.debug ?? false;
             this.uuid = 'randomid';
             this.state = {
                 htmlResponse: null,
@@ -63,17 +68,15 @@ export function withReactive<P>(WrappedComponent: React.ComponentType<P>): any {
                 axios
                     .post(
                         '/reactive-x',
-                        { payload: Reactive.debug ? payload : btoa(JSON.stringify(payload)) },
+                        { payload: this.debug ? payload : btoa(JSON.stringify(payload)) },
                         {
                             headers: {
-                                'x-debug': Reactive.debug,
+                                'x-debug': this.debug,
                             },
                         },
                     )
                     .then((response) => {
-                        const payload = Reactive.debug
-                            ? response.data.payload
-                            : JSON.parse(atob(response.data.payload));
+                        const payload = this.debug ? response.data.payload : JSON.parse(atob(response.data.payload));
                         payload.map((data: any, index: number) => {
                             const merge = { ...this.states[index].controller.state, data: data.state };
                             this.states[index].controller.setState(merge);

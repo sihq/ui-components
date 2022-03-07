@@ -13,4 +13,7 @@ export interface ReactiveControllerRegistration {
     state: VoidFunction;
     mounted: boolean;
 }
+export interface ReactiveProps {
+    debug?: boolean;
+}
 export declare function withReactive<P>(WrappedComponent: React.ComponentType<P>): any;
