@@ -63,6 +63,9 @@ export function withReactive<P>(WrappedComponent: React.ComponentType<P>): any {
             const handleValidationResponse = (response: any): void => {
                 console.log(response);
             };
+            const handleCsrfTokenMismatch = () => {
+                window.location.reload();
+            };
 
             return new Promise((resolve, reject) => {
                 axios
@@ -87,6 +90,8 @@ export function withReactive<P>(WrappedComponent: React.ComponentType<P>): any {
                         const response = error.response;
                         if (error.response.status === 422) {
                             handleValidationResponse(response.data.errors);
+                        } else if (error.response?.data?.message === 'CSRF token mismatch.') {
+                            handleCsrfTokenMismatch();
                         } else {
                             handleHtmlResponse(response.data);
                         }
