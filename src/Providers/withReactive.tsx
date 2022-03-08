@@ -69,8 +69,9 @@ export function withReactive<P>(WrappedComponent: React.ComponentType<P>): any {
                 window.location.reload();
             };
             const handleRedirectResponse = (redirect: string) => {
-                this.props.navigate(new URL(redirect).pathname);
-                return;
+                this.setState({ htmlResponse: null }, () => {
+                    this.props.navigate(new URL(redirect).pathname);
+                });
             };
 
             return new Promise((resolve, reject) => {
