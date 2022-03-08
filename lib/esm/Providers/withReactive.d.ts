@@ -15,5 +15,6 @@ export interface ReactiveControllerRegistration {
 }
 export interface ReactiveProps {
     debug?: boolean;
+    navigate: (to: string) => undefined;
 }
 export declare function withReactive<P>(WrappedComponent: React.ComponentType<P>): any;

@@ -5,6 +5,7 @@ import { Debounce } from '../Tools';
 import { ReactiveContext } from '../Contexts/ReactiveContext';
 import { ReactiveController } from './withController';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 export interface ReactiveDataEvent {
     action: string;
@@ -24,10 +25,11 @@ export interface ReactiveControllerRegistration {
 
 export interface ReactiveProps {
     debug?: boolean;
+    navigate: (to: string) => undefined;
 }
 
 export function withReactive<P>(WrappedComponent: React.ComponentType<P>): any {
-    return class Reactive extends Component<P, any> {
+    const Reactive = class Reactive extends Component<P & ReactiveProps, any> {
         protected debug = false;
         static delay = 100;
         protected uuid: string;
@@ -66,6 +68,9 @@ export function withReactive<P>(WrappedComponent: React.ComponentType<P>): any {
             const handleCsrfTokenMismatch = () => {
                 window.location.reload();
             };
+            const handleRedirectResponse = (redirect: string) => {
+                this.props.navigate(redirect);
+            };
 
             return new Promise((resolve, reject) => {
                 axios
@@ -84,6 +89,9 @@ export function withReactive<P>(WrappedComponent: React.ComponentType<P>): any {
                             const merge = { ...this.states[index].controller.state, data: data.state };
                             this.states[index].controller.setState(merge);
                         });
+                        if (response.data?.redirect) {
+                            handleRedirectResponse(response.data?.redirect);
+                        }
                         resolve(response);
                     })
                     .catch((error) => {
@@ -202,5 +210,10 @@ export function withReactive<P>(WrappedComponent: React.ComponentType<P>): any {
                 </ReactiveContext.Provider>
             );
         }
+    };
+
+    return (props: any) => {
+        const navigate = useNavigate();
+        return <Reactive navigate={navigate} {...props} />;
     };
 }
