@@ -6,6 +6,7 @@ import { BrowserRouter } from 'react-router-dom';
 import Field from './Field';
 import { InputDuration } from './InputDuration/InputDuration.stories';
 import { InputPassword } from './InputPassword/InputPassword.stories';
+import { InputPhone } from './InputPhone/InputPhone.stories';
 import { InputSearch } from './InputSearch/InputSearch.stories';
 import { InputSelect } from './InputSelect/InputSelect.stories';
 import { InputTimezone } from './InputTimezone/InputTimezone.stories';
@@ -16,6 +17,7 @@ export const Select = InputSelect;
 export const Search = InputSearch;
 export const Timezone = InputTimezone;
 export const Duration = InputDuration;
+export const Phone = InputPhone;
 
 export default {
     title: 'Field',
@@ -36,7 +38,7 @@ export const Textarea: ComponentStory<typeof Field> = () => <Field name="" type=
 
 export const Currency: ComponentStory<typeof Field> = () => <Field name="" type="currency" label="Currency:" />;
 export const Address: ComponentStory<typeof Field> = () => <Field name="" type="address" label="Address:" />;
-export const Phone: ComponentStory<typeof Field> = () => <Field name="" type="phone" label="Phone:" />;
+
 export const DateOfBirth: ComponentStory<typeof Field> = () => (
     <Field name="" type="date-of-birth" label="Date Of Birth:" />
 );

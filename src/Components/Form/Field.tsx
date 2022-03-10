@@ -9,10 +9,11 @@ import Editor from './Inputs/Editor';
 import { FieldContext } from '../../Contexts';
 import Image from './Inputs/Image';
 import Password from './InputPassword/InputPassword';
-import Phone from './Inputs/Phone';
+import Phone from './InputPhone/InputPhone';
 import Reference from './shared/Reference';
 import Search from './InputSearch/InputSearch';
 import Select from './InputSelect/InputSelect';
+import Store from './shared/Store';
 import Text from './Inputs/Text';
 import Textarea from './Inputs/Textarea';
 import Timezone from './InputTimezone/InputTimezone';
@@ -80,9 +81,11 @@ export const Field = (props: FieldProperties): JSX.Element => {
     return (
         <FieldContext.Provider value={{ ...context, ...props }}>
             <Reference>
-                <label htmlFor={`${id ?? name ?? label}`} className="flex flex-col flex-1">
-                    <Input {...props} />
-                </label>
+                <Store>
+                    <label htmlFor={`${id ?? name ?? label}`} className="flex flex-col flex-1">
+                        <Input {...props} />
+                    </label>
+                </Store>
             </Reference>
         </FieldContext.Provider>
     );
