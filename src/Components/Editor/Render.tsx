@@ -16,7 +16,7 @@ export default (props: RenderProps): JSX.Element => {
 
     return (
         <>
-            {blocks.map((block): JSX.Element | null => {
+            {(blocks ?? []).map((block): JSX.Element | null => {
                 const EditorBlock = Blocks.find(({ name }) => name === block?.type);
                 return <>{EditorBlock?.preview(block.data)}</>;
             })}
