@@ -19,7 +19,7 @@ export default function Store({ children, onChange }: StoreProps): JSX.Element |
     const action =
         onChange ??
         ((value: string | object | number | []) => {
-            setStore({ ...getStore, [context.name]: value });
+            setStore(_.set({ ...getStore }, context.name, value));
         });
     const value = _.get(getStore, context.name) ?? null;
 

@@ -28,6 +28,7 @@ export default (props: TextProperties): JSX.Element => {
                     ref={context.ref}
                     id={`${id ?? name ?? label}`}
                     {...{ type, name, disabled, placeholder, onChange, onKeyDown, onKeyUp, onFocus }}
+                    value={context.value}
                     onChange={({ target: { value } }) => context.onChange(value)}
                     className="outline-none bg-transparent flex-1 w-full"
                 />

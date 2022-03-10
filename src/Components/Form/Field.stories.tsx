@@ -1,6 +1,7 @@
 // Field.stories.ts|tsx
 
 import { ComponentMeta, ComponentStory } from '@storybook/react';
+import React, { useState } from 'react';
 
 import { BrowserRouter } from 'react-router-dom';
 import Field from './Field';
@@ -10,7 +11,7 @@ import { InputPhone } from './InputPhone/InputPhone.stories';
 import { InputSearch } from './InputSearch/InputSearch.stories';
 import { InputSelect } from './InputSelect/InputSelect.stories';
 import { InputTimezone } from './InputTimezone/InputTimezone.stories';
-import React from 'react';
+import { ReactiveControllerContext } from '../../Contexts';
 
 export const Password = InputPassword;
 export const Select = InputSelect;
@@ -25,7 +26,7 @@ export default {
     decorators: [
         (Story) => (
             <BrowserRouter>
-                <div className="w-64">
+                <div style={{ minWidth: 300 }}>
                     <Story />
                 </div>
             </BrowserRouter>
@@ -52,3 +53,29 @@ export const ToggleButton: ComponentStory<typeof Field> = () => (
 );
 
 export const Transfer: ComponentStory<typeof Field> = () => <Field name="" type="transfer" label="Transfer:" />;
+
+export const Sample = () => {
+    const [state, setState] = useState({
+        user: {
+            first_name: 'test',
+            last_name: 'martin',
+            phone: {
+                number: '55656',
+            },
+        },
+    });
+    return (
+        <ReactiveControllerContext.Provider value={{ update: setState, state }}>
+            <div className="space-y-4" style={{ width: 500 }}>
+                <div className="space-x-4 flex">
+                    <Field name="user.first_name" type="text" label="First name:" />
+                    <Field name="user.last_name" type="text" label="Last name:" />
+                </div>
+                <Field name="user.phone" type="phone" label="Phone:" />
+                <pre className="w-full border text-xs border-gray-300 rounded p-1 overflow-auto mt-5">
+                    {JSON.stringify(state, null, 2)}
+                </pre>
+            </div>
+        </ReactiveControllerContext.Provider>
+    );
+};

@@ -12,14 +12,21 @@ export default (props: PhoneProps): JSX.Element => {
     const context = useContext(FieldContext);
     return (
         <>
-            <Store onChange={(value) => context.onChange({ ...context.value, phone: value })}>
-                <Text
-                    {...props}
-                    type="text"
-                    prepend={<Prepend onChange={(value) => context.onChange({ ...context.value, country: value })} />}
-                />
-            </Store>
-            <pre>{JSON.stringify(context.value)}</pre>
+            <FieldContext.Provider value={{ ...context, name: `${context.name}.number` }}>
+                <Store>
+                    <Text
+                        {...props}
+                        type="text"
+                        prepend={
+                            <FieldContext.Provider value={{ ...context, name: `${context.name}.country` }}>
+                                <Store>
+                                    <Prepend />
+                                </Store>
+                            </FieldContext.Provider>
+                        }
+                    />
+                </Store>
+            </FieldContext.Provider>
         </>
     );
 };
