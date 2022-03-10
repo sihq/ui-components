@@ -1,8 +1,6 @@
-import React from 'react';
 import { TypeInput } from '../../../Types';
 interface TextProperties extends TypeInput {
     label?: string;
-    defer?: boolean;
 }
-declare const _default: React.ForwardRefExoticComponent<TextProperties & React.RefAttributes<HTMLInputElement>>;
+declare const _default: (props: TextProperties) => JSX.Element;
 export default _default;

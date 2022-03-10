@@ -1,14 +1,10 @@
+import { FieldContext, ReactiveControllerContext } from '../../../Contexts';
 import React, { useContext } from 'react';
 
-import { ControllerContext } from '@sihq/reactive';
-
-interface InlineErrorProperties {
-    name: string;
-}
-export default (props: InlineErrorProperties): JSX.Element | null => {
-    const { errors } = useContext(ControllerContext);
-    const { name } = props;
-    const error = errors[name] ?? undefined;
+export default (): JSX.Element | null => {
+    const context = useContext(FieldContext);
+    const { errors } = useContext(ReactiveControllerContext);
+    const error = errors ? errors[context.name] ?? undefined : undefined;
 
     return error ? (
         <span className="select-none text-yellow-500 text-xs flex items-start leading-5 mt-2 font-semibold animate-animated animate-faster animate-fadeInDown">

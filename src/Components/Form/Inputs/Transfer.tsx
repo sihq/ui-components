@@ -1,10 +1,10 @@
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/solid';
 
 import Append from '../shared/Append';
-import InlineErrors from '../InlineErrors';
-import Label from '../Label';
+import InlineErrors from '../shared/InlineErrors';
+import Label from '../shared/Label';
 import Prepend from '../shared/Prepend';
-import PrivacyBarrier from '../PrivacyBarrier';
+import PrivacyBarrier from '../shared/PrivacyBarrier';
 import React from 'react';
 import { TypeInput } from '../../../Types';
 import Wrapper from '../shared/Wrapper';
@@ -16,7 +16,7 @@ interface TransferProperties extends TypeInput {
 const Transfer = (props: TransferProperties): JSX.Element | null => {
     return (
         <>
-            <Label {...props} />
+            <Label />
             <Wrapper {...props}>
                 <Prepend {...props} />
                 <div className="flex w-full h-32">
@@ -75,9 +75,9 @@ const Transfer = (props: TransferProperties): JSX.Element | null => {
                     </div>
                 </div>
                 <Append {...props} />
-                <PrivacyBarrier {...props} />
+                <PrivacyBarrier />
             </Wrapper>
-            <InlineErrors {...props} />
+            <InlineErrors />
         </>
     );
 };

@@ -7,7 +7,7 @@ export const argTypes = {
     },
     variant: {
         options: VARIANTS,
-        defaultValue: 'sm',
+        defaultValue: 'standard',
         control: { type: 'inline-radio' },
     },
 };

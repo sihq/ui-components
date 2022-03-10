@@ -2,37 +2,34 @@ import React, { useContext } from 'react';
 import { TypeInput, TypeOptions } from '../../../Types';
 
 import Append from '../shared/Append';
-import { ControllerContext } from '@sihq/reactive';
-import InlineErrors from '../InlineErrors';
-import Label from '../Label';
+import { FieldContext } from '../../../Contexts';
+import InlineErrors from '../shared/InlineErrors';
+import Label from '../shared/Label';
 import Prepend from '../shared/Prepend';
-import PrivacyBarrier from '../PrivacyBarrier';
+import PrivacyBarrier from '../shared/PrivacyBarrier';
 import { SelectorIcon } from '@heroicons/react/solid';
 import Wrapper from '../shared/Wrapper';
 
-interface SelectProperties extends TypeInput {
+interface SelectProps extends TypeInput {
     label?: string;
-
-    defer?: boolean;
     options?: TypeOptions;
 }
 
-export default React.forwardRef<HTMLSelectElement, SelectProperties>((props, ref): JSX.Element => {
-    const { bind = (): object => ({}) } = useContext(ControllerContext);
-    const { id, type, name, label, defer = true, disabled, placeholder, options } = props;
+export default (props: SelectProps): JSX.Element => {
+    const { id, type, name, label, disabled, placeholder, options } = props;
     const { onChange, onKeyDown, onKeyUp, onFocus } = props;
-
+    const context = useContext(FieldContext);
     return (
         <>
-            <Label {...props} />
-            <Wrapper {...props}>
+            <Label />
+            <Wrapper>
                 <Prepend {...props} />
-
                 <select
-                    ref={ref}
+                    ref={context.ref}
                     id={`${id ?? name ?? label}`}
                     {...{ type, name, disabled, placeholder, onChange, onKeyDown, onKeyUp, onFocus }}
-                    {...(onChange ? {} : bind({ defer, name }))}
+                    value={context.value ?? ''}
+                    onChange={({ target: { value } }) => context.onChange(value)}
                     className="outline-none bg-transparent appearance-none flex-1 w-full"
                 >
                     {(options ?? []).map(({ text, value }) => {
@@ -43,14 +40,13 @@ export default React.forwardRef<HTMLSelectElement, SelectProperties>((props, ref
                         );
                     })}
                 </select>
-
                 <span className="h-4 w-4 flex relative -mr-1 text-gray-600">
                     <SelectorIcon />
                 </span>
                 <Append {...props} />
-                <PrivacyBarrier {...props} />
+                <PrivacyBarrier />
             </Wrapper>
-            <InlineErrors {...props} />
+            <InlineErrors />
         </>
     );
-});
+};

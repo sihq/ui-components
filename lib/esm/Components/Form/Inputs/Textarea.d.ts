@@ -10,5 +10,5 @@ interface TextProperties extends React.InputHTMLAttributes<HTMLTextAreaElement> 
     size?: string;
     variant?: string;
 }
-declare const _default: React.ForwardRefExoticComponent<TextProperties & React.RefAttributes<HTMLTextAreaElement>>;
+declare const _default: (props: TextProperties) => JSX.Element;
 export default _default;

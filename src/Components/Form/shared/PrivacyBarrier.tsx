@@ -1,11 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
-interface PrivacyBarrierProperties {
-    secured?: boolean;
-}
+import { FieldContext } from '../../../Contexts';
 
-export default ({ secured = false }: PrivacyBarrierProperties): JSX.Element | null => {
-    return secured ? (
+export default function PrivacyBarrier(): JSX.Element | null {
+    const context = useContext(FieldContext);
+    return context.secured ? (
         <div
             className="private-field inset-0 absolute z-50 bg-white"
             style={{
@@ -15,4 +14,4 @@ export default ({ secured = false }: PrivacyBarrierProperties): JSX.Element | nu
             }}
         ></div>
     ) : null;
-};
+}

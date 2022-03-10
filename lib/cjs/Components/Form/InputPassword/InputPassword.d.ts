@@ -1,9 +1,5 @@
-export interface PasswordProperties {
-    id?: string;
-    label?: string;
-    name: string;
-    type: string;
-    defer?: boolean;
+import { TypeInput } from '../../../Types';
+export interface PasswordProps extends TypeInput {
 }
-declare const _default: (props: PasswordProperties) => JSX.Element;
+declare const _default: (props: PasswordProps) => JSX.Element;
 export default _default;

@@ -242,8 +242,6 @@ export const COUNTRY_CODES = {
 };
 
 const Phone = (props: PhoneProperties): JSX.Element => {
-    const input = React.createRef<HTMLInputElement>();
-
     const options = Object.entries(COUNTRY_CODES).map((country) => {
         const name = country[0];
         const code = country[1].code;
@@ -258,7 +256,7 @@ const Phone = (props: PhoneProperties): JSX.Element => {
 
     return (
         <>
-            <Text {...{ ...props, name: `${props.name}.number` }} ref={input} prepend={<Prepend />} />
+            <Text {...{ ...props, name: `${props.name}.number` }} prepend={<Prepend />} />
         </>
     );
 };

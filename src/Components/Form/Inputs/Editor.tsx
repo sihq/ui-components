@@ -5,9 +5,9 @@ import BlockProperties from '../../Editor/BlockProperties';
 import Context from '../../Editor/Context';
 import { ControllerContext } from '@sihq/reactive';
 import EditorBlock from '../../Editor/EditorBlock';
-import InlineErrors from '../InlineErrors';
-import Label from '../Label';
-import PrivacyBarrier from '../PrivacyBarrier';
+import InlineErrors from '../shared/InlineErrors';
+import Label from '../shared/Label';
+import PrivacyBarrier from '../shared/PrivacyBarrier';
 import { TypeBlocks } from '../../Editor/Types';
 
 // @ts-ignore
@@ -36,7 +36,6 @@ export default React.forwardRef<HTMLInputElement, EditorProperties>((props): JSX
     const [selected, setSelected] = useState<string | null>(null);
     const {
         name,
-        label,
 
         variant = 'basic',
     } = props;
@@ -64,7 +63,7 @@ export default React.forwardRef<HTMLInputElement, EditorProperties>((props): JSX
     return (
         <>
             <Context.Provider value={{ selected: selected }}>
-                <Label>{label}</Label>
+                <Label />
                 <span className={`${className} h-full overflow-hidden`}>
                     <div className="flex-1 flex flex-col p-10 space-y-2 overflow-auto scrollbar">
                         {blocks.map((block, key): JSX.Element => {
@@ -87,7 +86,7 @@ export default React.forwardRef<HTMLInputElement, EditorProperties>((props): JSX
 
                     <PrivacyBarrier />
                 </span>
-                <InlineErrors {...props} />
+                <InlineErrors />
             </Context.Provider>
         </>
     );

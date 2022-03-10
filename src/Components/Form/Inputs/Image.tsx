@@ -2,10 +2,10 @@ import React, { SyntheticEvent, useContext, useState } from 'react';
 
 import Append from '../shared/Append';
 import { ControllerContext } from '@sihq/reactive';
-import InlineErrors from '../InlineErrors';
-import Label from '../Label';
+import InlineErrors from '../shared/InlineErrors';
+import Label from '../shared/Label';
 import Prepend from '../shared/Prepend';
-import PrivacyBarrier from '../PrivacyBarrier';
+import PrivacyBarrier from '../shared/PrivacyBarrier';
 import { TypeInput } from '../../../Types';
 import Vapor from 'laravel-vapor';
 import Wrapper from '../shared/Wrapper';
@@ -15,7 +15,7 @@ interface ImageProperties extends TypeInput {
     defer?: boolean;
 }
 
-export default React.forwardRef<HTMLInputElement, ImageProperties>((props, ref): JSX.Element => {
+export default function Image(props: ImageProperties): JSX.Element {
     const { setValue, value } = useContext(ControllerContext);
     const { id, name, label, disabled, placeholder } = props;
     const { onChange, onKeyDown, onKeyUp, onFocus } = props;
@@ -47,7 +47,7 @@ export default React.forwardRef<HTMLInputElement, ImageProperties>((props, ref):
 
     return (
         <>
-            <Label {...props} />
+            <Label />
             <Wrapper {...props}>
                 <Prepend {...props} />
 
@@ -75,7 +75,6 @@ export default React.forwardRef<HTMLInputElement, ImageProperties>((props, ref):
                         <input
                             type="file"
                             accept="image/png, image/jpeg, image/jpg"
-                            ref={ref}
                             id={`${id ?? name ?? label}`}
                             {...{ name, disabled, placeholder, onChange, onKeyDown, onKeyUp, onFocus }}
                             {...(onChange ? {} : { onChange: upload })}
@@ -97,9 +96,9 @@ export default React.forwardRef<HTMLInputElement, ImageProperties>((props, ref):
                 </div>
 
                 <Append {...props} />
-                <PrivacyBarrier {...props} />
+                <PrivacyBarrier />
             </Wrapper>
-            <InlineErrors {...props} />
+            <InlineErrors />
         </>
     );
-});
+}

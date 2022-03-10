@@ -3,8 +3,8 @@ import React, { ReactNode, useContext } from 'react';
 import { CheckIcon } from '@heroicons/react/solid';
 import Conditional from '../../Conditional';
 import { ControllerContext } from '@sihq/reactive';
-import InlineErrors from '../InlineErrors';
-import PrivacyBarrier from '../PrivacyBarrier';
+import InlineErrors from '../shared/InlineErrors';
+import PrivacyBarrier from '../shared/PrivacyBarrier';
 import { TypeIcon } from '../../../Types';
 
 // @ts-ignore
@@ -26,7 +26,7 @@ const VARIANTS: { [key: string]: string } = {
     base: ' p-4 relative flex text-gray-700 flex-col items-center text-sm justify-center rounded border-2 ',
 };
 
-export default React.forwardRef<HTMLButtonElement, ToggleButtonProperties>((props, ref): JSX.Element => {
+export default (props: ToggleButtonProperties): JSX.Element => {
     const { value, setValue } = useContext(ControllerContext);
     const { id, name, label, disabled, variant = 'basic', icon, description } = props;
 
@@ -43,7 +43,6 @@ export default React.forwardRef<HTMLButtonElement, ToggleButtonProperties>((prop
                         ? 'border-blue-400 shadow-inner bg-blue-50'
                         : 'border-gray-200 bg-gray-50 hover:border-gray-300 hover:bg-gray-100'
                 }`}
-                ref={ref}
                 id={`${id ?? name ?? label}`}
                 {...{ name, disabled }}
                 onClick={(): void => setValue(name, !value(name))}
@@ -63,7 +62,7 @@ export default React.forwardRef<HTMLButtonElement, ToggleButtonProperties>((prop
                 <PrivacyBarrier />
             </button>
 
-            <InlineErrors {...props} />
+            <InlineErrors />
         </>
     );
-});
+};

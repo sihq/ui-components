@@ -10,5 +10,5 @@ interface ToggleProperties extends React.InputHTMLAttributes<HTMLInputElement> {
     size?: string;
     variant?: string;
 }
-declare const _default: React.ForwardRefExoticComponent<ToggleProperties & React.RefAttributes<HTMLInputElement>>;
+declare const _default: (props: ToggleProperties) => JSX.Element;
 export default _default;

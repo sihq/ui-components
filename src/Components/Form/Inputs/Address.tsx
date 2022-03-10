@@ -1,7 +1,7 @@
 import { HomeIcon } from '@heroicons/react/solid';
 import React from 'react';
 import Text from './Text';
-import { usePlacesWidget } from 'react-google-autocomplete';
+// import { usePlacesWidget } from 'react-google-autocomplete';
 
 interface AddressProperties {
     id?: string;
@@ -995,10 +995,10 @@ export const STREET_TYPE = [
 ];
 
 export default (props: AddressProperties): JSX.Element => {
-    const { ref } = usePlacesWidget<HTMLInputElement>({
-        apiKey: 'AIzaSyByiwqCucxMpk-wohWNUbVA3yePIc2GVXk',
-        onPlaceSelected: (place) => console.log(place),
-    });
+    // const { ref } = usePlacesWidget<HTMLInputElement>({
+    //     apiKey: 'AIzaSyByiwqCucxMpk-wohWNUbVA3yePIc2GVXk',
+    //     onPlaceSelected: (place) => console.log(place),
+    // });
 
     const Prepend = (): JSX.Element => (
         <span className="flex flex-shrink-0 items-center justify-center mr-2">
@@ -1013,7 +1013,7 @@ export default (props: AddressProperties): JSX.Element => {
 
     return (
         <>
-            <Text {...props} ref={ref} prepend={<Prepend />} />
+            <Text {...props} prepend={<Prepend />} />
         </>
     );
 };

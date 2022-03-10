@@ -18,7 +18,7 @@ export default React.forwardRef<HTMLInputElement, EditorProperties>((props): JSX
 
     return (
         <>
-            {blocks.map((block): JSX.Element | null => {
+            {(blocks ?? []).map((block): JSX.Element | null => {
                 const EditorBlock = Blocks.find(({ name }) => name === block?.type);
                 return <>{EditorBlock?.preview(block.data)}</>;
             })}

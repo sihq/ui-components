@@ -13,5 +13,5 @@ interface ToggleButtonProperties extends React.InputHTMLAttributes<HTMLButtonEle
     icon?: TypeIcon;
     description?: string;
 }
-declare const _default: React.ForwardRefExoticComponent<ToggleButtonProperties & React.RefAttributes<HTMLButtonElement>>;
+declare const _default: (props: ToggleButtonProperties) => JSX.Element;
 export default _default;

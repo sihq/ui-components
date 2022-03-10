@@ -1,9 +1,9 @@
 import React, { ReactNode, useContext } from 'react';
 
 import { ControllerContext } from '@sihq/reactive';
-import InlineErrors from '../InlineErrors';
-import Label from '../Label';
-import PrivacyBarrier from '../PrivacyBarrier';
+import InlineErrors from '../shared/InlineErrors';
+import Label from '../shared/Label';
+import PrivacyBarrier from '../shared/PrivacyBarrier';
 
 // @ts-ignore
 interface TextProperties extends React.InputHTMLAttributes<HTMLTextAreaElement> {
@@ -26,7 +26,7 @@ const VARIANTS: { [key: string]: string } = {
         ' focus-within:bg-white bg-gray-200 border-gray-200 focus-within:border-blue-400 focus-within:ring-blue-400 rounded-full',
 };
 
-export default React.forwardRef<HTMLTextAreaElement, TextProperties>((props, ref): JSX.Element => {
+export default (props: TextProperties): JSX.Element => {
     const { bind = (): object => ({}) } = useContext(ControllerContext);
     const {
         id,
@@ -53,12 +53,11 @@ export default React.forwardRef<HTMLTextAreaElement, TextProperties>((props, ref
 
     return (
         <>
-            <Label>{label}</Label>
+            <Label />
 
             <span className={`${className} ${size === 'sm' ? 'px-3 p-2' : ''}${size === 'xs' ? 'px-1 p-0.5' : ''}`}>
                 {prepend}
                 <textarea
-                    ref={ref}
                     id={`${id ?? name ?? label}`}
                     {...{ type, name, disabled, placeholder, onChange, onKeyDown, onKeyUp, onFocus }}
                     {...(onChange ? {} : bind({ defer, name }))}
@@ -70,7 +69,7 @@ export default React.forwardRef<HTMLTextAreaElement, TextProperties>((props, ref
                 {append}
                 <PrivacyBarrier />
             </span>
-            <InlineErrors {...props} />
+            <InlineErrors />
         </>
     );
-});
+};

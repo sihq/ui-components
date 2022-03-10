@@ -3,17 +3,19 @@ import { TypeIcon, TypeLabel, TypeOptions, TypeSize, TypeVariant } from '../../T
 import Address from './Inputs/Address';
 import Currency from './Inputs/Currency';
 import DateOfBirth from './Inputs/DateOfBirth';
-import Duration from './Inputs/Duration';
+import Duration from './InputDuration/InputDuration';
 import Editor from './Inputs/Editor';
+import { FieldContext } from '../../Contexts';
 import Image from './Inputs/Image';
 import Password from './InputPassword/InputPassword';
 import Phone from './Inputs/Phone';
 import React from 'react';
-import Search from './Inputs/Search';
+import Reference from './shared/Reference';
+import Search from './InputSearch/InputSearch';
 import Select from './InputSelect/InputSelect';
 import Text from './Inputs/Text';
 import Textarea from './Inputs/Textarea';
-import Timezone from './Inputs/Timezone';
+import Timezone from './InputTimezone/InputTimezone';
 import Toggle from './Inputs/Toggle';
 import ToggleButton from './Inputs/ToggleButton';
 import Transfer from './Inputs/Transfer';
@@ -58,7 +60,7 @@ const Input = (props: FieldProperties): JSX.Element | null => {
         case 'currency':
             return <Currency {...props} />;
         case 'duration':
-            return <Duration {...props} />;
+            return <Duration />;
         case 'editor':
             return <Editor {...props} />;
         case 'textarea':
@@ -74,11 +76,14 @@ const Input = (props: FieldProperties): JSX.Element | null => {
 
 export const Field = (props: FieldProperties): JSX.Element => {
     const { id, name, label } = props;
-
     return (
-        <label htmlFor={`${id ?? name ?? label}`} className="flex flex-col flex-1">
-            <Input {...props} />
-        </label>
+        <FieldContext.Provider value={props}>
+            <Reference>
+                <label htmlFor={`${id ?? name ?? label}`} className="flex flex-col flex-1">
+                    <Input {...props} />
+                </label>
+            </Reference>
+        </FieldContext.Provider>
     );
 };
 export default Field;

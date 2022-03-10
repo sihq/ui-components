@@ -1,12 +1,11 @@
+import React, { useContext } from 'react';
 import { TypeSize, TypeVariant } from '../../../Types';
 
-import React from 'react';
+import { FieldContext } from '../../../Contexts';
 import _ from 'lodash';
 
 interface Props {
     children: JSX.Element | JSX.Element[];
-    variant?: TypeVariant;
-    size?: TypeSize;
 }
 
 const BASE =
@@ -32,11 +31,12 @@ const SIZES: { [key in TypeSize]: string } = {
     xl: 'px-4 p-3 text-lg md:text-md',
 };
 
-export default function Wrapper({ children, size = 'sm', variant = 'standard' }: Props): JSX.Element | null {
+export default function Wrapper({ children }: Props): JSX.Element | null {
+    const context = useContext(FieldContext);
     const className = [
         BASE,
-        Object.values(_.pick(VARIANTS, [variant])).join(' '),
-        Object.values(_.pick(SIZES, [size])).join(' '),
+        Object.values(_.pick(VARIANTS, [context.variant])).join(' '),
+        Object.values(_.pick(SIZES, [context.size])).join(' '),
     ].join(' ');
 
     return <span className={className}>{children}</span>;

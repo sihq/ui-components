@@ -1,14 +1,3 @@
-import React from 'react';
-import Select from '../InputSelect/InputSelect';
-
-interface TimezoneProperties {
-    id?: string;
-    label?: string;
-    name: string;
-    type: string;
-    defer?: boolean;
-}
-
 export const TIMEZONES = [
     // Africa
     {
@@ -1833,13 +1822,3 @@ export const TIMEZONES = [
         text: 'Pacific/Yap',
     },
 ];
-
-export default (props: TimezoneProperties): JSX.Element => {
-    const input = React.createRef<HTMLSelectElement>();
-
-    return (
-        <>
-            <Select {...props} ref={input} options={TIMEZONES} />
-        </>
-    );
-};

@@ -2,9 +2,9 @@ import React, { ReactNode, useContext } from 'react';
 
 import Conditional from '../../Conditional';
 import { ControllerContext } from '@sihq/reactive';
-import InlineErrors from '../InlineErrors';
-import Label from '../Label';
-import PrivacyBarrier from '../PrivacyBarrier';
+import InlineErrors from '../shared/InlineErrors';
+import Label from '../shared/Label';
+import PrivacyBarrier from '../shared/PrivacyBarrier';
 
 // @ts-ignore
 interface ToggleProperties extends React.InputHTMLAttributes<HTMLInputElement> {
@@ -19,7 +19,7 @@ interface ToggleProperties extends React.InputHTMLAttributes<HTMLInputElement> {
     variant?: string;
 }
 
-export default React.forwardRef<HTMLInputElement, ToggleProperties>((props, ref): JSX.Element => {
+export default (props: ToggleProperties): JSX.Element => {
     const { bind = (): object => ({}) } = useContext(ControllerContext);
     const { id, name, label, defer = true, append, prepend, disabled, placeholder } = props;
 
@@ -35,7 +35,6 @@ export default React.forwardRef<HTMLInputElement, ToggleProperties>((props, ref)
                         <input
                             type="checkbox"
                             className="opacity-0 absolute inset-0 w-full h-full z-40"
-                            ref={ref}
                             id={`${id ?? name ?? label}`}
                             {...{ name, disabled, placeholder }}
                             {...bind({ defer, name })}
@@ -46,14 +45,14 @@ export default React.forwardRef<HTMLInputElement, ToggleProperties>((props, ref)
                     </div>
                     <Conditional expresion={!!label}>
                         <div className="select-none flex flex-col pl-2">
-                            <Label>{label}</Label>
+                            <Label />
                         </div>
                     </Conditional>
                     {append}
                 </span>
                 <PrivacyBarrier />
-                <InlineErrors {...props} />
+                <InlineErrors />
             </span>
         </>
     );
-});
+};

@@ -4,12 +4,18 @@ import { ComponentMeta, ComponentStory } from '@storybook/react';
 
 import { BrowserRouter } from 'react-router-dom';
 import Field from './Field';
+import { InputDuration } from './InputDuration/InputDuration.stories';
 import { InputPassword } from './InputPassword/InputPassword.stories';
+import { InputSearch } from './InputSearch/InputSearch.stories';
 import { InputSelect } from './InputSelect/InputSelect.stories';
+import { InputTimezone } from './InputTimezone/InputTimezone.stories';
 import React from 'react';
 
 export const Password = InputPassword;
 export const Select = InputSelect;
+export const Search = InputSearch;
+export const Timezone = InputTimezone;
+export const Duration = InputDuration;
 
 export default {
     title: 'Field',
@@ -34,12 +40,10 @@ export const Phone: ComponentStory<typeof Field> = () => <Field name="" type="ph
 export const DateOfBirth: ComponentStory<typeof Field> = () => (
     <Field name="" type="date-of-birth" label="Date Of Birth:" />
 );
-export const Duration: ComponentStory<typeof Field> = () => <Field name="" type="duration" label="Duration:" />;
+
 export const Image: ComponentStory<typeof Field> = () => <Field name="" type="image" label="Image:" />;
 export const Editor: ComponentStory<typeof Field> = () => <Field name="" type="editor" label="Editor:" />;
 
-export const Search: ComponentStory<typeof Field> = () => <Field name="" type="search" label="Search:" />;
-export const Timezone: ComponentStory<typeof Field> = () => <Field name="" type="timezone" label="Timezone:" />;
 export const Toggle: ComponentStory<typeof Field> = () => <Field name="" type="toggle" label="Toggle:" />;
 export const ToggleButton: ComponentStory<typeof Field> = () => (
     <Field name="" type="toggle-button" label="Toggle Button:" />

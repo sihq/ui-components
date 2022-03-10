@@ -1,9 +1,7 @@
-import React from 'react';
 import { TypeInput, TypeOptions } from '../../../Types';
-interface SelectProperties extends TypeInput {
+interface SelectProps extends TypeInput {
     label?: string;
-    defer?: boolean;
     options?: TypeOptions;
 }
-declare const _default: React.ForwardRefExoticComponent<SelectProperties & React.RefAttributes<HTMLSelectElement>>;
+declare const _default: (props: SelectProps) => JSX.Element;
 export default _default;
