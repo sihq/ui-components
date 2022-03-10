@@ -1,3 +1,4 @@
+import React, { useContext } from 'react';
 import { TypeIcon, TypeLabel, TypeOptions, TypeSize, TypeVariant } from '../../Types';
 
 import Address from './Inputs/Address';
@@ -9,7 +10,6 @@ import { FieldContext } from '../../Contexts';
 import Image from './Inputs/Image';
 import Password from './InputPassword/InputPassword';
 import Phone from './Inputs/Phone';
-import React from 'react';
 import Reference from './shared/Reference';
 import Search from './InputSearch/InputSearch';
 import Select from './InputSelect/InputSelect';
@@ -76,8 +76,9 @@ const Input = (props: FieldProperties): JSX.Element | null => {
 
 export const Field = (props: FieldProperties): JSX.Element => {
     const { id, name, label } = props;
+    const context = useContext(FieldContext);
     return (
-        <FieldContext.Provider value={props}>
+        <FieldContext.Provider value={{ ...context, ...props }}>
             <Reference>
                 <label htmlFor={`${id ?? name ?? label}`} className="flex flex-col flex-1">
                     <Input {...props} />

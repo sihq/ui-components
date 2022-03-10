@@ -88,7 +88,11 @@ export function withReactive<P>(WrappedComponent: React.ComponentType<P>): any {
                     .then((response) => {
                         const payload = this.debug ? response.data.payload : JSON.parse(atob(response.data.payload));
                         payload.map((data: any, index: number) => {
-                            const merge = { ...this.states[index].controller.state, data: data.state };
+                            const merge = {
+                                ...this.states[index].controller.state,
+                                data: data.state,
+                                exceptions: data?.exceptions ?? null,
+                            };
                             this.states[index].controller.setState(merge);
                         });
                         if (response.data?.redirect) {
