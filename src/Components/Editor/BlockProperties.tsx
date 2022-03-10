@@ -3,8 +3,8 @@ import React, { useContext, useState } from 'react';
 import Blocks from './Blocks';
 import { ChevronDownIcon } from '@heroicons/react/solid';
 import Context from './Context';
-import { ControllerContext } from '@sihq/reactive';
 import Field from '../Form/Field';
+import { FieldContext } from '../../Contexts';
 import { TypeBlocks } from './Types';
 import _ from 'lodash';
 
@@ -56,9 +56,9 @@ const Wrapper: any = ({
 
 const BlockProperties = ({ name }: Props): JSX.Element => {
     const { selected } = useContext(Context);
-    const { value } = useContext(ControllerContext);
+    const context = useContext(FieldContext);
 
-    const blocks = value(name) ? (value(name) as TypeBlocks) : [];
+    const blocks = context.value ? (context.value as TypeBlocks) : [];
 
     const block = blocks.find(({ id }) => id === selected);
     const index = blocks.findIndex(({ id }) => id === selected);

@@ -1,5 +1,2 @@
-interface Props {
-    name: string;
-}
-declare const AddBlock: ({ name }: Props) => JSX.Element;
+declare const AddBlock: () => JSX.Element;
 export default AddBlock;

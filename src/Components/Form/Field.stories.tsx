@@ -6,6 +6,7 @@ import React, { useState } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import Field from './Field';
 import { InputDuration } from './InputDuration/InputDuration.stories';
+import { InputEditor } from './InputEditor/InputEditor.stories';
 import { InputPassword } from './InputPassword/InputPassword.stories';
 import { InputPhone } from './InputPhone/InputPhone.stories';
 import { InputSearch } from './InputSearch/InputSearch.stories';
@@ -19,6 +20,7 @@ export const Search = InputSearch;
 export const Timezone = InputTimezone;
 export const Duration = InputDuration;
 export const Phone = InputPhone;
+export const Editor = InputEditor;
 
 export default {
     title: 'Field',
@@ -45,7 +47,6 @@ export const DateOfBirth: ComponentStory<typeof Field> = () => (
 );
 
 export const Image: ComponentStory<typeof Field> = () => <Field name="" type="image" label="Image:" />;
-export const Editor: ComponentStory<typeof Field> = () => <Field name="" type="editor" label="Editor:" />;
 
 export const Toggle: ComponentStory<typeof Field> = () => <Field name="" type="toggle" label="Toggle:" />;
 export const ToggleButton: ComponentStory<typeof Field> = () => (
@@ -66,12 +67,15 @@ export const Sample = () => {
     });
     return (
         <ReactiveControllerContext.Provider value={{ update: setState, state }}>
-            <div className="space-y-4" style={{ width: 500 }}>
+            <div className="space-y-4" style={{ width: 1000 }}>
                 <div className="space-x-4 flex">
                     <Field name="user.first_name" type="text" label="First name:" />
                     <Field name="user.last_name" type="text" label="Last name:" />
                 </div>
                 <Field name="user.phone" type="phone" label="Phone:" />
+                <div className="flex" style={{ height: 500 }}>
+                    <Field name="editor" type="editor" label="Editor:" />
+                </div>
                 <pre className="w-full border text-xs border-gray-300 rounded p-1 overflow-auto mt-5">
                     {JSON.stringify(state, null, 2)}
                 </pre>

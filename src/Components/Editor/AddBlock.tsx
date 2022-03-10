@@ -2,18 +2,15 @@ import React, { useContext, useState } from 'react';
 
 import Blocks from './Blocks';
 import Conditional from '../Conditional';
-import { ControllerContext } from '@sihq/reactive';
+import { FieldContext } from '../../Contexts';
 import { PlusCircleIcon } from '@heroicons/react/outline';
 import { TypeBlocks } from './Types';
 import { v4 as uuidv4 } from 'uuid';
 
-interface Props {
-    name: string;
-}
-const AddBlock = ({ name }: Props): JSX.Element => {
+const AddBlock = (): JSX.Element => {
     const [open, toggle] = useState(false);
-    const { value, setValue } = useContext(ControllerContext);
-    const blocks = value(name) ? (value(name) as TypeBlocks) : [];
+    const context = useContext(FieldContext);
+    const blocks = context.value ? (context.value as TypeBlocks) : [];
 
     return (
         <div className="flex items-center justify-center relative">
@@ -24,7 +21,8 @@ const AddBlock = ({ name }: Props): JSX.Element => {
                             <div
                                 key={key}
                                 onClick={(): void => {
-                                    setValue(name, [...blocks, { id: uuidv4(), type: editor_block.name }]);
+                                    context.onChange([...blocks, { id: uuidv4(), type: editor_block.name }]);
+
                                     toggle(false);
                                 }}
                                 className="border text-xs border-gray-200 hover:border-blue-500 hover:text-blue-500 rounded p-2 flex flex-col items-center justify-center"
