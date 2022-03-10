@@ -1,2 +1,5 @@
 import { createContext } from 'react';
-export const FieldContext = createContext({} as any);
+export const FieldContext = createContext({
+    variant: 'standard',
+    size: 'sm',
+} as any);

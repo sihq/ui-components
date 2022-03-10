@@ -3,8 +3,8 @@ import React, { useContext } from 'react';
 
 export default (): JSX.Element | null => {
     const context = useContext(FieldContext);
-    const { errors } = useContext(ReactiveControllerContext);
-    const error = errors ? errors[context.name] ?? undefined : undefined;
+    const { exceptions } = useContext(ReactiveControllerContext);
+    const error = exceptions ? exceptions[context.name] ?? undefined : undefined;
 
     return error ? (
         <span className="select-none text-yellow-500 text-xs flex items-start leading-5 mt-2 font-semibold animate-animated animate-faster animate-fadeInDown">
