@@ -1,6 +1,5 @@
-import React from 'react';
-interface EditorProperties extends React.InputHTMLAttributes<HTMLInputElement> {
+export interface RenderProps {
     name: string;
 }
-declare const _default: React.ForwardRefExoticComponent<EditorProperties & React.RefAttributes<HTMLInputElement>>;
+declare const _default: (props: RenderProps) => JSX.Element;
 export default _default;

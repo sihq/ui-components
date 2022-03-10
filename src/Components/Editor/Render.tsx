@@ -1,27 +1,25 @@
 import React, { useContext } from 'react';
 
 import Blocks from './Blocks';
-import { ControllerContext } from '@sihq/reactive';
+import { ReactiveControllerContext } from '../../Contexts';
 import { TypeBlocks } from '../Editor/Types';
+import _ from 'lodash';
 
-// @ts-ignore
-interface EditorProperties extends React.InputHTMLAttributes<HTMLInputElement> {
+export interface RenderProps {
     name: string;
 }
 
-export default React.forwardRef<HTMLInputElement, EditorProperties>((props): JSX.Element => {
-    const { value } = useContext(ControllerContext);
+export default (props: RenderProps): JSX.Element => {
+    const { state } = useContext(ReactiveControllerContext);
 
-    const { name } = props;
-
-    const blocks = value(name) ? (value(name) as TypeBlocks) : [];
+    const blocks = _.get(state, props.name) as TypeBlocks;
 
     return (
         <>
-            {(blocks ?? []).map((block): JSX.Element | null => {
+            {blocks.map((block): JSX.Element | null => {
                 const EditorBlock = Blocks.find(({ name }) => name === block?.type);
                 return <>{EditorBlock?.preview(block.data)}</>;
             })}
         </>
     );
-});
+};
