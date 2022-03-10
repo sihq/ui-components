@@ -11,6 +11,7 @@ import { InputPassword } from './InputPassword/InputPassword.stories';
 import { InputPhone } from './InputPhone/InputPhone.stories';
 import { InputSearch } from './InputSearch/InputSearch.stories';
 import { InputSelect } from './InputSelect/InputSelect.stories';
+import { InputTextarea } from './InputTextarea/InputTextarea.stories';
 import { InputTimezone } from './InputTimezone/InputTimezone.stories';
 import { ReactiveControllerContext } from '../../Contexts';
 
@@ -21,6 +22,7 @@ export const Timezone = InputTimezone;
 export const Duration = InputDuration;
 export const Phone = InputPhone;
 export const Editor = InputEditor;
+export const Textarea = InputTextarea;
 
 export default {
     title: 'Field',
@@ -37,7 +39,6 @@ export default {
 } as ComponentMeta<typeof Field>;
 
 export const Text: ComponentStory<typeof Field> = () => <Field name="" type="text" label="Text:" />;
-export const Textarea: ComponentStory<typeof Field> = () => <Field name="" type="textarea" label="Textarea:" />;
 
 export const Currency: ComponentStory<typeof Field> = () => <Field name="" type="currency" label="Currency:" />;
 export const Address: ComponentStory<typeof Field> = () => <Field name="" type="address" label="Address:" />;

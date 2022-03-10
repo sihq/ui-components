@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-interface TextProperties extends React.InputHTMLAttributes<HTMLTextAreaElement> {
+export interface TextProperties extends React.InputHTMLAttributes<HTMLTextAreaElement> {
     id?: string;
     label?: string;
     name: string;

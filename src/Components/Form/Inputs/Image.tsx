@@ -1,7 +1,7 @@
 import React, { SyntheticEvent, useContext, useState } from 'react';
 
 import Append from '../shared/Append';
-import { ControllerContext } from '@sihq/reactive';
+import { FieldContext } from '../../../Contexts';
 import InlineErrors from '../shared/InlineErrors';
 import Label from '../shared/Label';
 import Prepend from '../shared/Prepend';
@@ -16,7 +16,7 @@ interface ImageProperties extends TypeInput {
 }
 
 export default function Image(props: ImageProperties): JSX.Element {
-    const { setValue, value } = useContext(ControllerContext);
+    const context = useContext(FieldContext);
     const { id, name, label, disabled, placeholder } = props;
     const { onChange, onKeyDown, onKeyUp, onFocus } = props;
 
@@ -37,7 +37,7 @@ export default function Image(props: ImageProperties): JSX.Element {
                 setUploadProcess(Math.round(progress * 100));
             },
         }).then((response: any) => {
-            setValue(name, {
+            context.onChange({
                 ...response.file,
                 name: fileName,
                 mime: type,
@@ -54,19 +54,19 @@ export default function Image(props: ImageProperties): JSX.Element {
                 <div className="flex flex-col relative">
                     <div className="flex items-center">
                         <div>
-                            {value(name) ? (
+                            {context.value ? (
                                 <div
                                     className="aspect-video h-10 bg-gray-200 rounded mr-2 bg-center bg-cover"
                                     style={{
                                         backgroundImage: `url(${
                                             // @ts-ignore
-                                            value(name)?.store
+                                            context.value?.store
                                         }${
                                             // @ts-ignore
-                                            value(name)?.status === 'staged' ? 'tmp/' : ''
+                                            context.value?.status === 'staged' ? 'tmp/' : ''
                                         }${
                                             // @ts-ignore
-                                            value(name)?.id
+                                            context.value?.id
                                         })`,
                                     }}
                                 ></div>
