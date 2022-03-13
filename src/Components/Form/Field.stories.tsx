@@ -74,9 +74,10 @@ export const Sample = () => {
                     <Field name="user.last_name" type="text" label="Last name:" />
                 </div>
                 <Field name="user.phone" type="phone" label="Phone:" />
-                <div className="flex" style={{ height: 500 }}>
+                <Field name="user.avatar" type="image" label="Image:" />
+                {/* <div className="flex" style={{ height: 500 }}>
                     <Field name="editor" type="editor" label="Editor:" />
-                </div>
+                </div> */}
                 <pre className="w-full border text-xs border-gray-300 rounded p-1 overflow-auto mt-5">
                     {JSON.stringify(state, null, 2)}
                 </pre>
