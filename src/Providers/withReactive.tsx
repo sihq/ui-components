@@ -77,7 +77,7 @@ export function withReactive<P>(WrappedComponent: React.ComponentType<P>): any {
             return new Promise((resolve, reject) => {
                 axios
                     .post(
-                        '/reactive-x',
+                        '/reactive',
                         { payload: this.debug ? payload : btoa(JSON.stringify(payload)) },
                         {
                             headers: {
