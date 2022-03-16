@@ -142,9 +142,19 @@ export function withReactive<P>(WrappedComponent: React.ComponentType<P>): any {
                             props: controller.props ?? {},
                         };
                         this.states[index].mounted = true;
+                        const merge = {
+                            ...controller.state,
+                            scope: 'onMount',
+                            status: 'onRequest',
+                        };
+                        controller.setState(merge);
                         return payload;
                     });
                     this.request(payload).then(() => {
+                        this.states.map(({ controller }) => {
+                            const merge = { ...controller.state, scope: '', status: 'idle' };
+                            controller.setState(merge);
+                        });
                         resolve(true);
                     });
                 }),
