@@ -152,7 +152,7 @@ export function withReactive<P>(WrappedComponent: React.ComponentType<P>): any {
                     });
                     this.request(payload).then(() => {
                         this.states.map(({ controller }) => {
-                            const merge = { ...controller.state, scope: '', status: 'idle' };
+                            const merge = { ...controller.state, scope: '', status: 'idle', mounted: true };
                             controller.setState(merge);
                         });
                         resolve(true);

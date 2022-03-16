@@ -13,6 +13,7 @@ export interface ReactiveControllerState {
     exceptions: object;
     status: string;
     scope: string | null;
+    mounted: boolean;
 }
 export interface bindProps {
     defer?: boolean;

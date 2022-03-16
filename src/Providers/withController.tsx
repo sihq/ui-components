@@ -21,6 +21,7 @@ export interface ReactiveControllerState {
     exceptions: object;
     status: string;
     scope: string | null;
+    mounted: boolean;
 }
 
 export interface bindProps {
@@ -43,6 +44,7 @@ export function withController<P>(
                 exceptions: {},
                 status: 'idle',
                 scope: null,
+                mounted: false,
             };
             this.dispatch = this.dispatch.bind(this);
             this.update = this.update.bind(this);
