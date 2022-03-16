@@ -88,6 +88,7 @@ export function withController<P>(
             return (
                 <ReactiveControllerContext.Provider
                     value={{
+                        mounted: this.state.mounted,
                         status: this.state.status,
                         scope: this.state.scope,
                         exceptions: this.state.exceptions,
