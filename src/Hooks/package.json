@@ -1,0 +1,6 @@
+{
+    "internal": true,
+    "main": "../lib/cjs/hooks.js",
+    "module": "../lib/esm/hooks.js",
+    "types": "../lib/esm/hooks.d.ts"
+}
