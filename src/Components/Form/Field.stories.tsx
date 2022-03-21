@@ -7,6 +7,7 @@ import { BrowserRouter } from 'react-router-dom';
 import Field from './Field';
 import { InputDuration } from './InputDuration/InputDuration.stories';
 import { InputEditor } from './InputEditor/InputEditor.stories';
+import { InputNumber } from './InputNumber/InputNumber.stories';
 import { InputPassword } from './InputPassword/InputPassword.stories';
 import { InputPhone } from './InputPhone/InputPhone.stories';
 import { InputSearch } from './InputSearch/InputSearch.stories';
@@ -23,6 +24,7 @@ export const Duration = InputDuration;
 export const Phone = InputPhone;
 export const Editor = InputEditor;
 export const Textarea = InputTextarea;
+export const Number = InputNumber;
 
 export default {
     title: 'Field',

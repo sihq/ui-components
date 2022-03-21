@@ -8,6 +8,7 @@ import Duration from './InputDuration/InputDuration';
 import Editor from './InputEditor/InputEditor';
 import { FieldContext } from '../../Contexts';
 import Image from './InputImage/InputImage';
+import Number from './InputNumber/InputNumber';
 import Password from './InputPassword/InputPassword';
 import Phone from './InputPhone/InputPhone';
 import Reference from './shared/Reference';
@@ -62,6 +63,8 @@ const Input = (props: FieldProperties): JSX.Element | null => {
             return <Currency {...props} />;
         case 'duration':
             return <Duration />;
+        case 'number':
+            return <Number {...props} />;
         case 'editor':
             return <Editor {...props} />;
         case 'textarea':
