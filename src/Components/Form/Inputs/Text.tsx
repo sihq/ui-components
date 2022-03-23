@@ -11,10 +11,11 @@ import Wrapper from '../shared/Wrapper';
 
 interface TextProperties extends TypeInput {
     label?: string;
+    className?: string;
 }
 
 export default (props: TextProperties): JSX.Element => {
-    const { id, type, name, label, disabled, placeholder } = props;
+    const { id, type, name, label, disabled, placeholder, className } = props;
     const { onChange, onKeyDown, onKeyUp, onFocus } = props;
 
     const context = useContext(FieldContext);
@@ -30,7 +31,7 @@ export default (props: TextProperties): JSX.Element => {
                     {...{ type, name, disabled, placeholder, onChange, onKeyDown, onKeyUp, onFocus }}
                     value={context.value}
                     onChange={({ target: { value } }) => context.onChange(value)}
-                    className="outline-none bg-transparent flex-1 w-full"
+                    className={`outline-none bg-transparent flex-1 w-full ${className}`}
                 />
                 <Append {...props} />
                 <PrivacyBarrier />

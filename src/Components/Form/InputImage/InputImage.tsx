@@ -1,9 +1,9 @@
+import { ExclamationIcon, PhotographIcon } from '@heroicons/react/outline';
 import React, { SyntheticEvent, useContext, useState } from 'react';
 
 import { FieldContext } from '../../../Contexts';
 import InlineErrors from '../shared/InlineErrors';
 import Label from '../shared/Label';
-import { PhotographIcon } from '@heroicons/react/outline';
 import PrivacyBarrier from '../shared/PrivacyBarrier';
 import { TypeInput } from '../../../Types';
 import Vapor from 'laravel-vapor';
@@ -14,6 +14,7 @@ interface ImageProperties extends TypeInput {
 }
 
 export default function Image(props: ImageProperties): JSX.Element {
+    const [uploadError, setUploadError] = useState();
     const context = useContext(FieldContext);
     const { id, name, label, disabled, placeholder } = props;
 
@@ -33,13 +34,16 @@ export default function Image(props: ImageProperties): JSX.Element {
             progress: (progress: number) => {
                 setUploadProcess(Math.round(progress * 100));
             },
-        }).then((response: any) => {
-            context.onChange({
-                ...response.file,
-                name: fileName,
-                mime: type,
-            });
-        });
+        })
+            .then((response: any) => {
+                context.onChange({
+                    ...response.file,
+                    name: fileName,
+                    mime: type,
+                    url: `${response.file?.store}/${response.file?.id}`,
+                });
+            })
+            .catch(({ message }) => setUploadError(message));
     }
 
     return (
@@ -50,17 +54,11 @@ export default function Image(props: ImageProperties): JSX.Element {
                 <div className="h-14 w-14 flex items-center justify-center bg-gray-300 rounded outline-2 outline-offset-2 outline-gray-300 outline">
                     {context.value ? (
                         <div
-                            className="h-full w-full bg-gray-200 rounded mr-2 bg-center bg-cover"
+                            className="h-full w-full bg-gray-200 rounded bg-center bg-cover"
                             style={{
                                 backgroundImage: `url(${
                                     // @ts-ignore
-                                    context.value?.store
-                                }${
-                                    // @ts-ignore
-                                    context.value?.status === 'staged' ? 'tmp/' : ''
-                                }${
-                                    // @ts-ignore
-                                    context.value?.id
+                                    context.value?.url
                                 })`,
                             }}
                         ></div>
@@ -85,6 +83,12 @@ export default function Image(props: ImageProperties): JSX.Element {
                             ></div>
                         </div>
                     </div>
+                    {uploadError ? (
+                        <span className="select-none text-red-400 w-full text-xs flex items-start leading-5 mt-2 font-semibold animate-animated animate-faster animate-fadeInDown">
+                            <ExclamationIcon className="h-5 w-5 mr-1 flex-shrink-0" />
+                            {uploadError ?? ''}
+                        </span>
+                    ) : null}
                 </div>
                 <PrivacyBarrier />
             </div>

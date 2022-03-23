@@ -68,32 +68,34 @@ const BlockProperties = ({ name }: Props): JSX.Element => {
     const [activeGroup, setActiveGroup] = useState<string | null>();
 
     return (
-        <div className="bg-gray-50 w-72 border-l border-gray-300 p-3 px-5 scrollbar">
-            <div className="text-xs text-gray-600 tracking-wider flex-grow font-bold uppercase mt-2 mb-5">
-                {EditorBlock?.name}
-                {EditorBlock?.description ? (
-                    <div className="text-xs text-gray-400 tracking-wider font-normal normal-case">
-                        {EditorBlock?.description}
-                    </div>
-                ) : null}
-            </div>
+        <div className="p-4 flex">
+            <div className="bg-gray-50 w-72 border rounded border-gray-300 p-3 overflow-y-hidden  shadow scrollbar">
+                <div className="text-xs text-gray-600 tracking-wider flex-grow font-bold uppercase mt-2 mb-5">
+                    {EditorBlock?.name}
+                    {EditorBlock?.description ? (
+                        <div className="text-xs text-gray-400 tracking-wider font-normal normal-case">
+                            {EditorBlock?.description}
+                        </div>
+                    ) : null}
+                </div>
 
-            <div className="">
-                {Object.keys(fieldGroups).map((group, groupKey) => {
-                    return (
-                        <Wrapper {...{ groupKey, activeGroup, setActiveGroup, group }}>
-                            <div className="space-y-2">
-                                {fieldGroups[group].map((field, key) => {
-                                    return (
-                                        <div key={key}>
-                                            <Field {...field} name={`${name}.${index}.data.${field.name}`} />
-                                        </div>
-                                    );
-                                })}
-                            </div>
-                        </Wrapper>
-                    );
-                })}
+                <div className="">
+                    {Object.keys(fieldGroups).map((group, groupKey) => {
+                        return (
+                            <Wrapper {...{ groupKey, activeGroup, setActiveGroup, group }}>
+                                <div className="space-y-2">
+                                    {fieldGroups[group].map((field, key) => {
+                                        return (
+                                            <div key={key}>
+                                                <Field {...field} name={`${name}.${index}.data.${field.name}`} />
+                                            </div>
+                                        );
+                                    })}
+                                </div>
+                            </Wrapper>
+                        );
+                    })}
+                </div>
             </div>
         </div>
     );
