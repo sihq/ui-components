@@ -4,17 +4,11 @@
     "description": "Sihq UI Components",
     "author": "Brad Martin",
     "license": "MIT",
-    "main": "./lib/cjs/index.js",
-    "module": "./lib/esm/index.js",
-    "types": "./lib/esm/index.d.ts",
-    "exports": {
-        "./Components/Button": "./lib/esm/Components/Button/index.js"
-    },
+    "main": "./lib/index.js",
+    "types": "./lib/index.d.ts",
     "scripts": {
         "build-tailwind": "NODE_ENV=production npx tailwindcss -o ./lib/tailwind.css --minify",
-        "build": "yarn build:esm && yarn build:cjs && yarn build-tailwind",
-        "build:esm": "tsc",
-        "build:cjs": "tsc --module commonjs --outDir lib/cjs",
+        "build": "tsc && yarn build-tailwind",
         "predeploy": "npm run build-storybook",
         "deploy-storybook": "gh-pages -d storybook-static",
         "build-storybook": "build-storybook",
