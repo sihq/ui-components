@@ -5,7 +5,7 @@ export default (data: Data): JSX.Element => (
         <div className="container px-5 pt-6 pb-12 mx-auto">
             <div className="flex items-center justify-center">
                 <img
-                    className="lg:h-64 md:h-48 w-full object-cover object-center rounded-lg"
+                    className="lg:h-96 md:h-48 w-full object-cover object-center rounded-lg"
                     src={
                         data?.image
                             ? // @ts-ignore
