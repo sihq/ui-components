@@ -2,6 +2,7 @@
 export * from './Components/Modal';
 export * from './Components/Button';
 export * from './Components/Form/Field';
+export * from './Components/Editor/Render';
 import { withController } from './Providers/withController';
 export declare const Reactive: any;
 export declare const Controller: typeof withController;

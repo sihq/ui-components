@@ -309,3 +309,4 @@ export declare const Toggle: ComponentStory<typeof Field>;
 export declare const ToggleButton: ComponentStory<typeof Field>;
 export declare const Transfer: ComponentStory<typeof Field>;
 export declare const Sample: () => JSX.Element;
+export declare const SampleController: any;
