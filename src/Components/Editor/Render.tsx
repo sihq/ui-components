@@ -9,7 +9,7 @@ export interface RenderProps {
     name: string;
 }
 
-const Render = (props: RenderProps): JSX.Element => {
+export const Render = (props: RenderProps): JSX.Element => {
     const { state } = useContext(ReactiveControllerContext);
 
     const blocks = _.get(state, props.name) as TypeBlocks;
