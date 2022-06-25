@@ -17,6 +17,7 @@ import Select from './InputSelect/InputSelect';
 import Store from './shared/Store';
 import Text from './Inputs/Text';
 import Textarea from './InputTextarea/InputTextarea';
+import TinyMce from './InputTinymce/InputTinymce';
 import Timezone from './InputTimezone/InputTimezone';
 import Toggle from './Inputs/Toggle';
 import ToggleButton from './Inputs/ToggleButton';
@@ -69,6 +70,8 @@ const Input = (props: FieldProperties): JSX.Element | null => {
             return <Editor {...props} />;
         case 'textarea':
             return <Textarea {...props} />;
+        case 'tinymce':
+            return <TinyMce {...props} />;
         case 'image':
             return <Image {...props} />;
         case 'transfer':

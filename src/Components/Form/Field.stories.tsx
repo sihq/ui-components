@@ -13,6 +13,7 @@ import { InputPhone } from './InputPhone/InputPhone.stories';
 import { InputSearch } from './InputSearch/InputSearch.stories';
 import { InputSelect } from './InputSelect/InputSelect.stories';
 import { InputTextarea } from './InputTextarea/InputTextarea.stories';
+import { InputTinymce } from './InputTinymce/InputTinymce.stories';
 import { InputTimezone } from './InputTimezone/InputTimezone.stories';
 import { ReactiveControllerContext } from '../../Contexts';
 
@@ -24,6 +25,7 @@ export const Duration = InputDuration;
 export const Phone = InputPhone;
 export const Editor = InputEditor;
 export const Textarea = InputTextarea;
+export const Tinymce = InputTinymce;
 export const Number = InputNumber;
 
 export default {
