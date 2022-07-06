@@ -12,6 +12,8 @@ import blogBlockE from './blog/blog-e/Block';
 import heroBlockA from './hero/hero-a/Block';
 // testimonial
 import testimonialBlockB from './testimonial/testimonial-b/Block';
+// video
+import videoBlockB from './video/video-a/Block';
 
 export default [
     Content,
@@ -24,4 +26,5 @@ export default [
     Heading,
     testimonialBlockB,
     heroBlockA,
+    videoBlockB,
 ] as TypeEditorBlocks;
