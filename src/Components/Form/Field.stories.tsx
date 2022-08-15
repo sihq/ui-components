@@ -51,6 +51,10 @@ export const DateOfBirth: ComponentStory<typeof Field> = () => (
     <Field name="" type="date-of-birth" label="Date Of Birth:" />
 );
 
+export const Radio: ComponentStory<typeof Field> = () => (
+    <Field name="" type="radio" label="Radio" />
+);
+
 export const Image: ComponentStory<typeof Field> = () => <Field name="" type="image" label="Image:" />;
 
 export const Toggle: ComponentStory<typeof Field> = () => <Field name="" type="toggle" label="Toggle:" />;
