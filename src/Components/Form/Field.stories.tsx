@@ -15,6 +15,7 @@ import { InputPhone } from './InputPhone/InputPhone.stories';
 import { InputSearch } from './InputSearch/InputSearch.stories';
 import { InputSelect } from './InputSelect/InputSelect.stories';
 import { InputTextarea } from './InputTextarea/InputTextarea.stories';
+import { InputTinymce } from './InputTinymce/InputTinymce.stories';
 import { InputTimezone } from './InputTimezone/InputTimezone.stories';
 import { ReactiveControllerContext } from '../../Contexts';
 import { withReactive } from '../../Providers/withReactive';
@@ -27,6 +28,7 @@ export const Duration = InputDuration;
 export const Phone = InputPhone;
 export const Editor = InputEditor;
 export const Textarea = InputTextarea;
+export const Tinymce = InputTinymce;
 export const Number = InputNumber;
 
 export default {
@@ -52,6 +54,8 @@ export const DateOfBirth: ComponentStory<typeof Field> = () => (
     <Field name="" type="date-of-birth" label="Date Of Birth:" />
 );
 
+export const Radio: ComponentStory<typeof Field> = () => <Field name="" type="radio" label="Radio" />;
+
 export const Image: ComponentStory<typeof Field> = () => <Field name="" type="image" label="Image:" />;
 
 export const Toggle: ComponentStory<typeof Field> = () => <Field name="" type="toggle" label="Toggle:" />;
@@ -60,9 +64,6 @@ export const ToggleButton: ComponentStory<typeof Field> = () => (
 );
 
 export const Transfer: ComponentStory<typeof Field> = () => <Field name="" type="transfer" label="Transfer:" />;
-
-
-
 
 export const Sample = () => {
     const [state, setState] = useState({
@@ -96,24 +97,22 @@ export const Sample = () => {
     );
 };
 
-
 const properties = {
-    controller: "App//Lala"
-}
+    controller: 'App//Lala',
+};
 
-export const SampleController = withReactive(Controller(properties,() => {
-     const context =   useContext(ReactiveControllerContext)
+export const SampleController = withReactive(
+    Controller(properties, () => {
+        const context = useContext(ReactiveControllerContext);
 
-     const { dispatch } = context
-   
+        const { dispatch } = context;
 
-     const onSubmit = (e: SyntheticEvent): void => {
-        alert('submit');
-        dispatch(`save`);
-        e.preventDefault();
-    };
-    return (
-        
+        const onSubmit = (e: SyntheticEvent): void => {
+            alert('submit');
+            dispatch(`save`);
+            e.preventDefault();
+        };
+        return (
             <form {...{ onSubmit }} className="space-y-4" style={{ width: 1000 }}>
                 <div className="space-x-4 flex">
                     <Field name="user.first_name" type="text" label="First name:" />
@@ -130,6 +129,6 @@ export const SampleController = withReactive(Controller(properties,() => {
 
                 <Button type="submit">Submit</Button>
             </form>
-       
-    );
-}));
+        );
+    }),
+);

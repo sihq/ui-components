@@ -11,6 +11,7 @@ export interface FieldProperties {
     options?: TypeOptions;
     icon?: TypeIcon;
     description?: string;
+    value?: string;
 }
 export declare const Field: (props: FieldProperties) => JSX.Element;
 export default Field;

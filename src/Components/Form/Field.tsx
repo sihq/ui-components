@@ -17,10 +17,12 @@ import Select from './InputSelect/InputSelect';
 import Store from './shared/Store';
 import Text from './Inputs/Text';
 import Textarea from './InputTextarea/InputTextarea';
+import TinyMce from './InputTinymce/InputTinymce';
 import Timezone from './InputTimezone/InputTimezone';
 import Toggle from './Inputs/Toggle';
 import ToggleButton from './Inputs/ToggleButton';
 import Transfer from './Inputs/Transfer';
+import Radio from './Inputs/Radio';
 
 export interface FieldProperties {
     id?: string;
@@ -34,6 +36,7 @@ export interface FieldProperties {
     options?: TypeOptions;
     icon?: TypeIcon;
     description?: string;
+    value?: string;
 }
 
 const Input = (props: FieldProperties): JSX.Element | null => {
@@ -69,10 +72,14 @@ const Input = (props: FieldProperties): JSX.Element | null => {
             return <Editor {...props} />;
         case 'textarea':
             return <Textarea {...props} />;
+        case 'tinymce':
+            return <TinyMce {...props} />;
         case 'image':
             return <Image {...props} />;
         case 'transfer':
             return <Transfer {...props} />;
+        case 'radio':
+            return <Radio {...props} />;
         default:
             return null;
     }
