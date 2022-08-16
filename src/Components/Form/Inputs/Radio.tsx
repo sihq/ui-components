@@ -40,7 +40,7 @@ export default (props: RadioProperties): JSX.Element => {
                             ref={context.ref}
                             id={`${id ?? name ?? label}`}
                             {...{ name, disabled, placeholder, value }}
-                            checked={context.value}
+                            checked={context.value === value}
                             onChange={({ target: { value } }) => context.onChange(value)}
                         />
                     </div>
